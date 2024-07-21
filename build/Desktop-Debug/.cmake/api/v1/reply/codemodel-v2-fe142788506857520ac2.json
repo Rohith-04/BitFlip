@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-5d267af8927bc81d48ea.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "BitFlip",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BitFlip::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BitFlip-Debug-1ae4ffbc7f13a47cf86b.json",
+					"name" : "BitFlip",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BitFlip_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BitFlip_autogen-Debug-561ea0763775344bb314.json",
+					"name" : "BitFlip_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BitFlip_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BitFlip_autogen_timestamp_deps-Debug-090ad21d77fe4cb101ac.json",
+					"name" : "BitFlip_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug",
+		"source" : "/home/bleach/Desktop/cpp-gui/BitFlip"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

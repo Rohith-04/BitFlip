@@ -17,12 +17,24 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        newproject.cpp
+        newproject.h
+        newproject.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(BitFlip
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+
+        canvas.h canvas.cpp
+        component.h component.cpp
+        andgate.h andgate.cpp
+        images.qrc
+        inputitem.h inputitem.cpp
+        newproject.h newproject.cpp newproject.ui
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET BitFlip APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
