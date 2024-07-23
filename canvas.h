@@ -3,29 +3,28 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
+#include <QGraphicsView>
 #include <QObject>
 #include "component.h"
-
 class Canvas : public QGraphicsScene {
+    Q_OBJECT
+
 public:
-    Canvas(QObject *parent = nullptr) : QGraphicsScene(parent) {}
+    Canvas(QObject *parent = nullptr);
 
     void addComponent(QGraphicsItem *comp);
+    void setView(QGraphicsView *view);
+
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override {
-        qDebug() << "Canvas mouse press event";
-        QGraphicsScene::mousePressEvent(event);
-    }
+    void wheelEvent(QGraphicsSceneWheelEvent *event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override {
-        qDebug() << "Canvas mouse move event";
-        QGraphicsScene::mouseMoveEvent(event);
-    }
-
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override {
-        qDebug() << "Canvas mouse release event";
-        QGraphicsScene::mouseReleaseEvent(event);
-    }
+private:
+    QGraphicsView *view;
+    bool isPanning;
+    QPoint lastPos;
 };
 
 #endif // CANVAS_H

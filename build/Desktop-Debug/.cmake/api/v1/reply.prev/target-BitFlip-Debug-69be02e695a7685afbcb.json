@@ -71,13 +71,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 74,
+				"line" : 76,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 57,
+				"line" : 59,
 				"parent" : 0
 			},
 			{
@@ -289,8 +289,9 @@
 				9,
 				11,
 				13,
-				16,
-				20
+				15,
+				17,
+				22
 			]
 		}
 	],
@@ -379,8 +380,9 @@
 				9,
 				11,
 				13,
-				16,
-				20
+				15,
+				17,
+				22
 			]
 		},
 		{
@@ -392,9 +394,10 @@
 				8,
 				10,
 				12,
-				15,
-				17,
-				18
+				14,
+				16,
+				19,
+				20
 			]
 		},
 		{
@@ -403,16 +406,16 @@
 			[
 				4,
 				7,
-				14,
-				19
+				18,
+				21
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				21,
-				22
+				23,
+				24
 			]
 		}
 	],
@@ -498,11 +501,6 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "images.qrc",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
 			"path" : "inputitem.h",
 			"sourceGroupIndex" : 1
 		},
@@ -511,6 +509,22 @@
 			"compileGroupIndex" : 0,
 			"path" : "inputitem.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "outputitem.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "outputitem.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "assets.qrc",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
@@ -534,7 +548,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_images.cpp",
+			"path" : "build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -546,7 +560,7 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_images.cpp.rule",
+			"path" : "build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],

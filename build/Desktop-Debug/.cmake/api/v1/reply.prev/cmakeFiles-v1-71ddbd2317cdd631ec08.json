@@ -1530,7 +1530,7 @@
 			"path" : "/usr/share/cmake/Modules/GNUInstallDirs.cmake"
 		},
 		{
-			"path" : "images.qrc"
+			"path" : "assets.qrc"
 		}
 	],
 	"kind" : "cmakeFiles",

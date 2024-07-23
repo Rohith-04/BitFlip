@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>assets/and_gate.png</file>
+        <file>assets/ip-active.png</file>
+        <file>assets/ip-not_active.png</file>
+        <file>assets/nand_gate.png</file>
+        <file>assets/nor_gate.png</file>
+        <file>assets/not_gate.png</file>
+        <file>assets/op-active.png</file>
+        <file>assets/op-not_active.png</file>
+        <file>assets/or_gate.png</file>
+        <file>assets/xnor_gate.png</file>
+        <file>assets/xor_gate.png</file>
+    </qresource>
+</RCC>

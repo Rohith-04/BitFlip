@@ -364,7 +364,7 @@
 		"/usr/lib/cmake/Qt6Widgets/Qt6WidgetsMacros.cmake",
 		"/usr/lib/cmake/Qt6Widgets/Qt6WidgetsPlugins.cmake",
 		"/usr/share/cmake/Modules/GNUInstallDirs.cmake",
-		"/home/bleach/Desktop/cpp-gui/BitFlip/images.qrc"
+		"/home/bleach/Desktop/cpp-gui/BitFlip/assets.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "/home/bleach/Desktop/cpp-gui/BitFlip",
 	"CROSS_CONFIG" : false,
@@ -406,6 +406,12 @@
 			"/home/bleach/Desktop/cpp-gui/BitFlip/newproject.h",
 			"MU",
 			"EWIEGA46WW/moc_newproject.cpp",
+			null
+		],
+		[
+			"/home/bleach/Desktop/cpp-gui/BitFlip/outputitem.h",
+			"MU",
+			"EWIEGA46WW/moc_outputitem.cpp",
 			null
 		]
 	],
@@ -473,7 +479,8 @@
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/inputitem.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/main.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/mainwindow.cpp", "MU", null ],
-		[ "/home/bleach/Desktop/cpp-gui/BitFlip/newproject.cpp", "MU", null ]
+		[ "/home/bleach/Desktop/cpp-gui/BitFlip/newproject.cpp", "MU", null ],
+		[ "/home/bleach/Desktop/cpp-gui/BitFlip/outputitem.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

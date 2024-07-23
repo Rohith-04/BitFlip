@@ -24,6 +24,7 @@ public:
 private slots:
     void on_btn_andgate_clicked();
     void on_btn_addInput_clicked();
+    void on_btn_addOutput_clicked();
 
 private:
     Ui::NewProject *ui;
@@ -31,6 +32,7 @@ private:
     Canvas *canvas;
     QPushButton *btnAddAndGate;
     QPushButton *btnAddInput;
+    QPushButton *btnAddOutput;
 };
 
 #endif // NEWPROJECT_H

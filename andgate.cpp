@@ -6,7 +6,7 @@
 AndGate::AndGate(QGraphicsItem *parent)
     : Component(parent)
 {
-    QString resourcePath = ":/new/prefix1/and_gate.png";
+    QString resourcePath = ":/images/assets/and_gate.png";
     m_pixmap = QPixmap(resourcePath);
 
     if (!QFile::exists(resourcePath)) {

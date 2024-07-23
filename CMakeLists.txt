@@ -30,9 +30,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         canvas.h canvas.cpp
         component.h component.cpp
         andgate.h andgate.cpp
-        images.qrc
+
         inputitem.h inputitem.cpp
         newproject.h newproject.cpp newproject.ui
+        outputitem.h outputitem.cpp
+        assets.qrc
 
 
     )
