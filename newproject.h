@@ -33,6 +33,9 @@ private:
     QPushButton *btnAddAndGate;
     QPushButton *btnAddInput;
     QPushButton *btnAddOutput;
+    QList<QGraphicsItem*> inputItems;
+    QList<QGraphicsItem*> outputItems;
+
 };
 
 #endif // NEWPROJECT_H

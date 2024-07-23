@@ -71,4 +71,24 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
+void Canvas::positionInputItems(const QList<QGraphicsItem*>& inputItems) {
+    int x = 10; // starting X position
+    int y = 10; // fixed Y position for inputs
+    int spacing = 70; // spacing between items
 
+    for (QGraphicsItem* item : inputItems) {
+        item->setPos(x, y);
+        y += item->boundingRect().height() + spacing;
+    }
+}
+
+void Canvas::positionOutputItems(const QList<QGraphicsItem*>& outputItems) {
+    int x = view->frameWidth() - 10; // starting X position
+    int y = view->frameWidth() - 10; // fixed Y position for outputs
+    int spacing = 70; // spacing between items
+
+    for (QGraphicsItem* item : outputItems) {
+        item->setPos(x, y);
+        y += item->boundingRect().width() + spacing;
+    }
+}

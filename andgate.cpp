@@ -2,6 +2,7 @@
 #include <QPainter>
 #include <QFile>
 #include <QDebug>
+#include <QGraphicsScene>
 
 AndGate::AndGate(QGraphicsItem *parent)
     : Component(parent)
@@ -28,4 +29,14 @@ void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     Q_UNUSED(option);
     Q_UNUSED(widget);
     painter->drawPixmap(0, 0, m_pixmap);
+}
+
+void AndGate::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->button() == Qt::LeftButton){
+    qDebug() << "Removing And Gate";
+    if(scene()){
+            scene()->removeItem(this);
+    }
+    delete this;
+    }
 }

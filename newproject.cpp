@@ -67,10 +67,12 @@ void NewProject::on_btn_addInput_clicked() {
     QString activeImagePath = ":images/assets/ip-active.png";
     QString inactiveImagePath = ":images/assets/ip-not_active.png";
     InputItem *inputItem = new InputItem(activeImagePath, inactiveImagePath);
+    inputItems.append(inputItem);
     inputItem->setFlag(QGraphicsItem::ItemIsMovable);
     inputItem->setFlag(QGraphicsItem::ItemIsSelectable);
     canvas->addComponent(inputItem);
-    inputItem->setPos(100, 100);
+    canvas->positionInputItems(inputItems);
+    //inputItem->setPos(100, 100);
 }
 
 void NewProject::on_btn_addOutput_clicked() {
@@ -78,8 +80,10 @@ void NewProject::on_btn_addOutput_clicked() {
     QString activeOpImagePath = ":/images/assets/op-active.png";
     QString inactiveOpImagePath = ":/images/assets/op-not_active.png";
     OutputItem *outputItem = new OutputItem(activeOpImagePath,inactiveOpImagePath);
+    outputItems.append(outputItem);
     outputItem->setFlag(QGraphicsItem::ItemIsMovable);
     outputItem->setFlag(QGraphicsItem::ItemIsSelectable);
     canvas->addComponent(outputItem);
-    outputItem->setPos(20,20);
+    canvas->positionOutputItems(outputItems);
+    //outputItem->setPos(20,20);
 }
