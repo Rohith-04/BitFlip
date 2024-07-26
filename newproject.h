@@ -1,11 +1,17 @@
 #ifndef NEWPROJECT_H
 #define NEWPROJECT_H
 
+#include <QWidget>
 #include <QMainWindow>
 #include <QGraphicsView>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QPushButton>
+#include <QHBoxLayout>
 #include "canvas.h"
+#include "andgate.h"
+#include "inputitem.h"
+#include "outputitem.h"
 
 namespace Ui {
 class NewProject;
@@ -35,7 +41,6 @@ private:
     QPushButton *btnAddOutput;
     QList<QGraphicsItem*> inputItems;
     QList<QGraphicsItem*> outputItems;
-
 };
 
 #endif // NEWPROJECT_H

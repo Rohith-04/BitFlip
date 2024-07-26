@@ -1,7 +1,10 @@
 /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/moc_newproject.cpp: /home/bleach/Desktop/cpp-gui/BitFlip/newproject.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/moc_predefs.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/andgate.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/canvas.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/component.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/inputitem.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/outputitem.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -368,6 +371,7 @@
   /usr/include/qt6/QtCore/qversiontagging.h \
   /usr/include/qt6/QtCore/qxptype_traits.h \
   /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/QPixmap \
   /usr/include/qt6/QtGui/qaction.h \
   /usr/include/qt6/QtGui/qbitmap.h \
   /usr/include/qt6/QtGui/qbrush.h \
@@ -400,9 +404,11 @@
   /usr/include/qt6/QtWidgets/QGraphicsScene \
   /usr/include/qt6/QtWidgets/QGraphicsSceneMouseEvent \
   /usr/include/qt6/QtWidgets/QGraphicsView \
+  /usr/include/qt6/QtWidgets/QHBoxLayout \
   /usr/include/qt6/QtWidgets/QMainWindow \
   /usr/include/qt6/QtWidgets/QPushButton \
   /usr/include/qt6/QtWidgets/QVBoxLayout \
+  /usr/include/qt6/QtWidgets/QWidget \
   /usr/include/qt6/QtWidgets/qabstractbutton.h \
   /usr/include/qt6/QtWidgets/qabstractscrollarea.h \
   /usr/include/qt6/QtWidgets/qboxlayout.h \

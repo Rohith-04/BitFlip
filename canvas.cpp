@@ -1,94 +1,102 @@
 #include "canvas.h"
+#include "inputitem.h"
+#include "outputitem.h"
 #include <QScrollBar>
 #include <QDebug>
+#include <QGraphicsItem>
+#include <QGraphicsView>
 
-Canvas::Canvas(QObject *parent)
-    : QGraphicsScene(parent), view(nullptr), isPanning(false) {}
+Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr) {}
 
 void Canvas::addComponent(QGraphicsItem *comp) {
+    if (!comp) {
+        qDebug() << "Cannot add null component!";
+        return;
+    }
+
     addItem(comp);
+
+    if (InputItem *inputItem = dynamic_cast<InputItem*>(comp)) {
+        inputItems.append(inputItem);
+    } else if (OutputItem *outputItem = dynamic_cast<OutputItem*>(comp)) {
+        outputItems.append(outputItem);
+    }
+
+    repositionItems();
 }
 
 void Canvas::setView(QGraphicsView *view) {
     this->view = view;
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+
+void Canvas::repositionItems() {
+    if (!view) {
+        qDebug() << "View is not set!";
+        return;
+    }
+
+    qreal sceneWidth = sceneRect().width();
+
+    // Position input items on the left
+    qreal inputY = 0;
+    for (auto item = inputItems.begin(); item != inputItems.end(); item++) {
+        if (!*item) {
+            qDebug() << "Null input item detected!";
+            continue;
+        }
+        (*item)->setPos(10, inputY);
+        inputY += (*item)->boundingRect().height() + 5;
+    }
+
+    // Position output items on the right
+    qreal outputY = 0;
+    qreal outputX = sceneWidth - (outputItems.isEmpty() ? 10 : outputItems.first()->boundingRect().width());
+    for (auto item = outputItems.begin();item != outputItems.end(); item++) {
+        if (!*item) {
+            qDebug() << "Null output item detected!";
+            continue;
+        }
+        (*item)->setPos(outputX, outputY);
+        outputY += (*item)->boundingRect().height() + 5;
+    }
 }
 
 void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
-    if (view) {
-        if (event->delta() > 0) {
-            view->scale(1.1f, 1.1f);
-            qDebug() << "Zooming in";
-        } else {
-            view->scale(1 / 1.1f, 1 / 1.1f);
-            qDebug() << "Zooming out";
-        }
+    if (!view) {
+        qDebug() << "View is not set!";
+        return;
     }
+    // Get the zoom factor
+    float factor = 1.05;
+    if (event->delta() < 0) {
+        factor = 1 / factor;
+    }
+
+    // Calculate the zoom center
+    QPointF zoomCenter = event->scenePos();
+
+    // Store the current scroll bar positions
+    int hScrollBarOldValue = view->horizontalScrollBar()->value();
+    int vScrollBarOldValue = view->verticalScrollBar()->value();
+
+    // Apply the zoom transformation
+    view->scale(factor, factor);
+
+    // Adjust the scroll bars to keep the zoom center stable
+    QPointF delta = event->scenePos() - zoomCenter;
+    view->horizontalScrollBar()->setValue(hScrollBarOldValue + delta.x());
+    view->verticalScrollBar()->setValue(vScrollBarOldValue + delta.y());
+
 }
 
-void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+void Canvas::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
-        QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
-        if (!item) {
-            isPanning = true;
-            lastPos = event->screenPos();
-            if (view) {
-                view->setCursor(Qt::ClosedHandCursor);
-            }
-            event->accept();
+        if (view) {
+            view->resetTransform();
+            qDebug() << "Reset Zoom";
         } else {
-            QGraphicsScene::mousePressEvent(event);
+            QGraphicsScene::mouseDoubleClickEvent(event);
         }
-    } else {
-        QGraphicsScene::mousePressEvent(event);
-    }
-}
-
-void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (isPanning) {
-        QPoint delta = event->screenPos() - lastPos;
-        if (view) {
-            view->horizontalScrollBar()->setValue(view->horizontalScrollBar()->value() - delta.x());
-            view->verticalScrollBar()->setValue(view->verticalScrollBar()->value() - delta.y());
-        }
-        lastPos = event->screenPos();
-        event->accept();
-    } else {
-        QGraphicsScene::mouseMoveEvent(event);
-    }
-}
-
-void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    if (isPanning) {
-        isPanning = false;
-        if (view) {
-            view->setCursor(Qt::ArrowCursor);
-        }
-        event->accept();
-    } else {
-        QGraphicsScene::mouseReleaseEvent(event);
-    }
-}
-
-void Canvas::positionInputItems(const QList<QGraphicsItem*>& inputItems) {
-    int x = 10; // starting X position
-    int y = 10; // fixed Y position for inputs
-    int spacing = 70; // spacing between items
-
-    for (QGraphicsItem* item : inputItems) {
-        item->setPos(x, y);
-        y += item->boundingRect().height() + spacing;
-    }
-}
-
-void Canvas::positionOutputItems(const QList<QGraphicsItem*>& outputItems) {
-    int x = view->frameWidth() - 10; // starting X position
-    int y = view->frameWidth() - 10; // fixed Y position for outputs
-    int spacing = 70; // spacing between items
-
-    for (QGraphicsItem* item : outputItems) {
-        item->setPos(x, y);
-        y += item->boundingRect().width() + spacing;
     }
 }

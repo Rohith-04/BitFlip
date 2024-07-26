@@ -3,7 +3,7 @@
 
 #include "component.h"
 #include <QPixmap>
-
+#include "canvas.h"
 class InputItem : public Component {
 public:
     InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
@@ -15,6 +15,7 @@ public:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
     QPixmap m_activePixmap;

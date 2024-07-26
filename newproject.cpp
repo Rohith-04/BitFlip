@@ -1,14 +1,5 @@
-#include <QGraphicsView>
-#include <QPushButton>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QWidget>
 #include "newproject.h"
 #include "ui_newproject.h"
-#include "canvas.h"
-#include "andgate.h"
-#include "inputitem.h"
-#include "outputitem.h"
 
 NewProject::NewProject(QWidget *parent)
     : QMainWindow(parent)
@@ -24,8 +15,8 @@ NewProject::NewProject(QWidget *parent)
     view->setDragMode(QGraphicsView::RubberBandDrag);
     canvas->setView(view);
 
-    btnAddAndGate = new QPushButton("Add AND Gate", this);
     btnAddInput = new QPushButton("Add Input", this);
+    btnAddAndGate = new QPushButton("Add AND Gate", this);
     btnAddOutput = new QPushButton("Add Output", this);
 
     connect(btnAddAndGate, &QPushButton::clicked, this, &NewProject::on_btn_andgate_clicked);
@@ -67,23 +58,13 @@ void NewProject::on_btn_addInput_clicked() {
     QString activeImagePath = ":images/assets/ip-active.png";
     QString inactiveImagePath = ":images/assets/ip-not_active.png";
     InputItem *inputItem = new InputItem(activeImagePath, inactiveImagePath);
-    inputItems.append(inputItem);
-    inputItem->setFlag(QGraphicsItem::ItemIsMovable);
-    inputItem->setFlag(QGraphicsItem::ItemIsSelectable);
     canvas->addComponent(inputItem);
-    canvas->positionInputItems(inputItems);
-    //inputItem->setPos(100, 100);
 }
 
 void NewProject::on_btn_addOutput_clicked() {
     qDebug() << "Adding output item";
     QString activeOpImagePath = ":/images/assets/op-active.png";
     QString inactiveOpImagePath = ":/images/assets/op-not_active.png";
-    OutputItem *outputItem = new OutputItem(activeOpImagePath,inactiveOpImagePath);
-    outputItems.append(outputItem);
-    outputItem->setFlag(QGraphicsItem::ItemIsMovable);
-    outputItem->setFlag(QGraphicsItem::ItemIsSelectable);
+    OutputItem *outputItem = new OutputItem(activeOpImagePath, inactiveOpImagePath);
     canvas->addComponent(outputItem);
-    canvas->positionOutputItems(outputItems);
-    //outputItem->setPos(20,20);
 }

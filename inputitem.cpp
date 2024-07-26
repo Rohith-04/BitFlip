@@ -44,3 +44,14 @@ void InputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     Component::mouseReleaseEvent(event);
 }
 
+/*
+void InputItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
+    if(event->button() == Qt::LeftButton){
+        qDebug() << "Removing Input Item";
+        if(scene()){
+            scene()->removeItem(this);
+        }
+        delete this;
+    }
+}
+*/
