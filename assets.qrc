@@ -11,5 +11,7 @@
         <file>assets/or_gate.png</file>
         <file>assets/xnor_gate.png</file>
         <file>assets/xor_gate.png</file>
+        <file>assets/and_gate.svg</file>
+        <file>assets/ip-not_active.svg</file>
     </qresource>
 </RCC>

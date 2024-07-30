@@ -41,3 +41,15 @@ void OutputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     // Handle mouse release if needed
     Component::mouseReleaseEvent(event);
 }
+
+QList<QPointF> OutputItem::getConnectionPoints() const {
+    QRectF bounds = boundingRect();
+    QList<QPointF> points;
+    QPointF t_point(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5);
+    points << t_point;
+
+    for(auto i = points.begin(); i != points.end(); ++i){
+        qDebug() << "op--->" << (*i);
+    }
+    return points;
+}

@@ -55,3 +55,18 @@ void InputItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 */
+
+QList<QPointF> InputItem::getConnectionPoints() const {
+    QList<QPointF> points;
+    QRectF bounds = boundingRect();
+
+    QPointF t_point(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5);
+    points << t_point;
+
+    for(auto i = points.begin(); i != points.end(); ++i){
+        qDebug() << "ip-----> " << (*i);
+    }
+
+    return points;
+}
+

@@ -391,6 +391,12 @@
 			null
 		],
 		[
+			"/home/bleach/Desktop/cpp-gui/BitFlip/connection.h",
+			"MU",
+			"EWIEGA46WW/moc_connection.cpp",
+			null
+		],
+		[
 			"/home/bleach/Desktop/cpp-gui/BitFlip/inputitem.h",
 			"MU",
 			"EWIEGA46WW/moc_inputitem.cpp",
@@ -476,6 +482,7 @@
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/andgate.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/canvas.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/component.cpp", "MU", null ],
+		[ "/home/bleach/Desktop/cpp-gui/BitFlip/connection.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/inputitem.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/main.cpp", "MU", null ],
 		[ "/home/bleach/Desktop/cpp-gui/BitFlip/mainwindow.cpp", "MU", null ],

@@ -121,6 +121,14 @@ build CMakeFiles/BitFlip.dir/outputitem.cpp.o: CXX_COMPILER__BitFlip_unscanned_D
   OBJECT_DIR = CMakeFiles/BitFlip.dir
   OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
 
+build CMakeFiles/BitFlip.dir/connection.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/connection.cpp || cmake_object_order_depends_target_BitFlip
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/BitFlip.dir/connection.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics -fno-direct-access-external-data
+  INCLUDES = -I/home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  OBJECT_DIR = CMakeFiles/BitFlip.dir
+  OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
+
 build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp || cmake_object_order_depends_target_BitFlip
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o.d
@@ -137,7 +145,7 @@ build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_CO
 #############################################
 # Link the executable BitFlip
 
-build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /usr/lib/libQt6Widgets.so.6.7.2 /usr/lib/libQt6Gui.so.6.7.2 /usr/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
+build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/connection.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /usr/lib/libQt6Widgets.so.6.7.2 /usr/lib/libQt6Gui.so.6.7.2 /usr/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = /usr/lib/libQt6Widgets.so.6.7.2  /usr/lib/libQt6Gui.so.6.7.2  /usr/lib/libQt6Core.so.6.7.2  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   OBJECT_DIR = CMakeFiles/BitFlip.dir
@@ -239,7 +247,7 @@ build BitFlip_autogen/timestamp BitFlip_autogen/mocs_compilation.cpp | ${cmake_n
 #############################################
 # Custom command for BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp
 
-build BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp | ${cmake_ninja_workdir}BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp: CUSTOM_COMMAND /home/bleach/Desktop/cpp-gui/BitFlip/assets.qrc CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json /home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-not_active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/op-active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/op-not_active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/and_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/nand_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/xnor_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/not_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/nor_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/or_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/xor_gate.png /usr/lib/qt6/rcc /usr/lib/qt6/rcc || BitFlip_autogen BitFlip_autogen_timestamp_deps
+build BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp | ${cmake_ninja_workdir}BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp: CUSTOM_COMMAND /home/bleach/Desktop/cpp-gui/BitFlip/assets.qrc CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json /home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-not_active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/op-active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/op-not_active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/and_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/and_gate.svg /home/bleach/Desktop/cpp-gui/BitFlip/assets/nand_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/xnor_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/not_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-active.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/nor_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-not_active.svg /home/bleach/Desktop/cpp-gui/BitFlip/assets/or_gate.png /home/bleach/Desktop/cpp-gui/BitFlip/assets/xor_gate.png /usr/lib/qt6/rcc /usr/lib/qt6/rcc || BitFlip_autogen BitFlip_autogen_timestamp_deps
   COMMAND = cd /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug && /usr/bin/cmake -E cmake_autorcc /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json Debug
   DESC = Automatic RCC for assets.qrc
   restat = 1

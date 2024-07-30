@@ -1,5 +1,10 @@
 /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/moc_canvas.cpp: /home/bleach/Desktop/cpp-gui/BitFlip/canvas.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/moc_predefs.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/canvas.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/component.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/connection.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/inputitem.h \
+  /home/bleach/Desktop/cpp-gui/BitFlip/outputitem.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -245,8 +250,7 @@
   /usr/include/linux/limits.h \
   /usr/include/locale.h \
   /usr/include/pthread.h \
-  /usr/include/qt6/QtCore/QList \
-  /usr/include/qt6/QtCore/QObject \
+  /usr/include/qt6/QtCore/QDebug \
   /usr/include/qt6/QtCore/q20functional.h \
   /usr/include/qt6/QtCore/q20memory.h \
   /usr/include/qt6/QtCore/q20type_traits.h \
@@ -365,6 +369,8 @@
   /usr/include/qt6/QtCore/qversiontagging.h \
   /usr/include/qt6/QtCore/qxptype_traits.h \
   /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/QPainterPath \
+  /usr/include/qt6/QtGui/QPixmap \
   /usr/include/qt6/QtGui/qaction.h \
   /usr/include/qt6/QtGui/qbitmap.h \
   /usr/include/qt6/QtGui/qbrush.h \
@@ -394,6 +400,8 @@
   /usr/include/qt6/QtGui/qtransform.h \
   /usr/include/qt6/QtGui/qwindowdefs.h \
   /usr/include/qt6/QtWidgets/QGraphicsItem \
+  /usr/include/qt6/QtWidgets/QGraphicsLineItem \
+  /usr/include/qt6/QtWidgets/QGraphicsPathItem \
   /usr/include/qt6/QtWidgets/QGraphicsScene \
   /usr/include/qt6/QtWidgets/QGraphicsSceneMouseEvent \
   /usr/include/qt6/QtWidgets/QGraphicsView \

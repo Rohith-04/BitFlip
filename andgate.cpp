@@ -7,7 +7,7 @@
 AndGate::AndGate(QGraphicsItem *parent)
     : Component(parent)
 {
-    QString resourcePath = ":/images/assets/and_gate.png";
+    QString resourcePath = ":/images/assets/and_gate.svg";
     m_pixmap = QPixmap(resourcePath);
 
     if (!QFile::exists(resourcePath)) {
@@ -39,4 +39,19 @@ void AndGate::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     }
     delete this;
     }
+}
+
+QList<QPointF> AndGate::getConnectionPoints() const {
+    QList<QPointF> points;
+    QRectF bounds = boundingRect();
+
+    points << QPointF(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.25f);
+    points << QPointF(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.75f);
+    points << QPointF(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5f);
+
+    for(auto i = points.begin(); i != points.end(); ++i){
+        qDebug() << "andGate------> " << (*i);
+    }
+
+    return points;
 }

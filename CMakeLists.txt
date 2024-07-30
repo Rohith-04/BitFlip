@@ -35,6 +35,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         newproject.h newproject.cpp newproject.ui
         outputitem.h outputitem.cpp
         assets.qrc
+        connection.h connection.cpp
+
 
 
     )

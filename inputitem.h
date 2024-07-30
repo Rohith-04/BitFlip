@@ -11,11 +11,13 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void toggleState();
+    QList<QPointF> getConnectionPoints() const override;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+
 
 private:
     QPixmap m_activePixmap;

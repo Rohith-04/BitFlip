@@ -11,6 +11,7 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void toggleState();
+    QList<QPointF> getConnectionPoints() const override;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

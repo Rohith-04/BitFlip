@@ -13,11 +13,13 @@
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/op-active.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/op-not_active.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/and_gate.png",
+		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/and_gate.svg",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/nand_gate.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/xnor_gate.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/not_gate.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-active.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/nor_gate.png",
+		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-not_active.svg",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/or_gate.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/xor_gate.png"
 	],
