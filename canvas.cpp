@@ -148,6 +148,7 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
             lastPoint = connectionPoint;
             currentConnection->addPoint(lastPoint);
             startComponent = component;
+            lastDirection = Qt::Horizontal;  // Initialize with a default direction
         }
     }
     QGraphicsScene::mousePressEvent(event);
@@ -155,11 +156,25 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if (isDrawingConnection && currentConnection) {
-        qDebug() << "Continuining Drawing";
         QPointF newPoint = event->scenePos();
-        if (QLineF(lastPoint, newPoint).length() > 3.0) {
-            currentConnection->addPoint(newPoint);
-            lastPoint = newPoint;
+        QPointF adjustedPoint;
+
+        // Determine the dominant direction (horizontal or vertical)
+        qreal dx = qAbs(newPoint.x() - lastPoint.x());
+        qreal dy = qAbs(newPoint.y() - lastPoint.y());
+
+        if (dx > dy) {
+            // Draw horizontally
+            adjustedPoint = QPointF(newPoint.x(), lastPoint.y());
+        } else {
+            // Draw vertically
+            adjustedPoint = QPointF(lastPoint.x(), newPoint.y());
+        }
+
+        // Only add the point if it's sufficiently far from the last point
+        if (QLineF(lastPoint, adjustedPoint).length() > 30.0) {
+            currentConnection->addPoint(adjustedPoint);
+            lastPoint = adjustedPoint;
             update();  // Ensure the scene is updated
         }
         event->accept();
@@ -174,11 +189,25 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         auto result = getNearestConnectionPoint(event->scenePos());
         QPointF endPoint = result.first;
         Component *endComponent = result.second;
+
         if (endComponent && endComponent != startComponent) {
+            // Add the final segment based on the last direction
+            qreal dx = qAbs(endPoint.x() - lastPoint.x());
+            qreal dy = qAbs(endPoint.y() - lastPoint.y());
+
+            if (dx > dy) {
+                // Finish with a horizontal line
+                currentConnection->addPoint(QPointF(endPoint.x(), lastPoint.y()));
+            } else {
+                // Finish with a vertical line
+                currentConnection->addPoint(QPointF(lastPoint.x(), endPoint.y()));
+            }
             currentConnection->addPoint(endPoint);
-            // Store or finalize the connection here if needed
-            currentConnection->setActive(true);  // Set connection as active once completed
+
+            // Set the connection as active once completed
+            currentConnection->setActive(true);
         } else {
+            // Remove the incomplete connection if it doesn't end at a valid component
             removeItem(currentConnection);
             delete currentConnection;
         }
@@ -191,7 +220,7 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 }
 
 std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &scenePos) {
-    const qreal MAX_DISTANCE = 100.0;  // Temporarily increased for testing
+    const qreal MAX_DISTANCE = 40.0;  // Temporarily increased for testing
     QPointF nearest;
     Component *nearComponent = nullptr;
     qreal minDistance = std::numeric_limits<qreal>::max();

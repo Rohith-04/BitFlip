@@ -1,6 +1,5 @@
 /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/moc_canvas.cpp: /home/bleach/Desktop/cpp-gui/BitFlip/canvas.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/moc_predefs.h \
-  /home/bleach/Desktop/cpp-gui/BitFlip/canvas.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/component.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/connection.h \
   /home/bleach/Desktop/cpp-gui/BitFlip/inputitem.h \
@@ -371,6 +370,7 @@
   /usr/include/qt6/QtCore/qyieldcpu.h \
   /usr/include/qt6/QtGui/QPainterPath \
   /usr/include/qt6/QtGui/QPixmap \
+  /usr/include/qt6/QtGui/QVector2D \
   /usr/include/qt6/QtGui/qaction.h \
   /usr/include/qt6/QtGui/qbitmap.h \
   /usr/include/qt6/QtGui/qbrush.h \
@@ -398,6 +398,7 @@
   /usr/include/qt6/QtGui/qtguiexports.h \
   /usr/include/qt6/QtGui/qtguiglobal.h \
   /usr/include/qt6/QtGui/qtransform.h \
+  /usr/include/qt6/QtGui/qvectornd.h \
   /usr/include/qt6/QtGui/qwindowdefs.h \
   /usr/include/qt6/QtWidgets/QGraphicsItem \
   /usr/include/qt6/QtWidgets/QGraphicsLineItem \

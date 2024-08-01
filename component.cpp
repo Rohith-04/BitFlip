@@ -1,7 +1,8 @@
 #include "component.h"
+#include "QVector2D"
 
-Component::Component(QGraphicsItem *parent)
-    : QGraphicsItem(parent) {
+Component::Component(ComponentType type, QGraphicsItem *parent)
+    : QGraphicsItem(parent), m_type(type) {
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -28,8 +29,10 @@ void Component::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
-void Component::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        qDebug() << "Component mouse double click event";
-    }
+QVector2D Component::getPosition(){
+    return(QVector2D(pos().x(), pos().y()));
+}
+
+ComponentType Component::getType() const{
+    return m_type;
 }

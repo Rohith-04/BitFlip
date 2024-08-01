@@ -4,8 +4,10 @@
 #include <QDebug>
 #include <QGraphicsScene>
 
+int AndGate::count = 0;
+
 AndGate::AndGate(QGraphicsItem *parent)
-    : Component(parent)
+    : Component(AND, parent)
 {
     QString resourcePath = ":/images/assets/and_gate.svg";
     m_pixmap = QPixmap(resourcePath);
@@ -19,6 +21,11 @@ AndGate::AndGate(QGraphicsItem *parent)
     } else {
         qDebug() << "Successfully loaded" << resourcePath;
     }
+    m_andGateData.position = QVector2D(pos().x(), pos().y());
+    m_andGateData.connectionPoints = getConnectionPoints();
+    m_andGateData.id = m_id;
+
+    count++;
 }
 
 QRectF AndGate::boundingRect() const {
@@ -31,6 +38,21 @@ void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->drawPixmap(0, 0, m_pixmap);
 }
 
+void AndGate::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->buttons() & Qt::LeftButton){
+
+        //Handles Movement
+        Component::mouseMoveEvent(event);
+        qDebug() << "AndGate moving";
+        m_andGateData.position = QVector2D(pos().x(), pos().y());
+        m_andGateData.connectionPoints = getConnectionPoints();
+        qDebug() << m_andGateData.id;
+        //qDebug() << "Item moved to position:" << m_andGateData.position;
+        //qDebug() << "Connection point updated to:" << m_andGateData.connectionPoints;
+        qDebug() << getType();
+    }
+}
+
 void AndGate::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     if(event->button() == Qt::LeftButton){
     qDebug() << "Removing And Gate";
@@ -41,7 +63,8 @@ void AndGate::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
-QList<QPointF> AndGate::getConnectionPoints() const {
+
+QList<QPointF> AndGate::getConnectionPoints() {
     QList<QPointF> points;
     QRectF bounds = boundingRect();
 

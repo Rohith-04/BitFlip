@@ -3,10 +3,15 @@
 #include <QPainter>
 #include <QPen>
 
+int Connection::count = 0;
+
 Connection::Connection(QGraphicsItem *parent)
     : QGraphicsPathItem(parent), color(Qt::black), isActive(false)
 {
     //setZValue(-1);
+    m_connectionData.startComponent = nullptr;
+    m_connectionData.endComponent = nullptr;
+    count++;
 }
 
 void Connection::addPoint(const QPointF &point)
@@ -47,3 +52,5 @@ void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->setPen(pen);
     painter->drawPath(path);
 }
+
+void setState(bool state){}

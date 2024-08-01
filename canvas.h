@@ -9,6 +9,7 @@
 #include "outputitem.h"
 #include "connection.h"
 
+class Component;
 class InputItem;
 class OutputItem;
 
@@ -20,6 +21,7 @@ public:
     void addComponent(QGraphicsItem *comp);
     void addComponent(QGraphicsLineItem *line);
     void setView(QGraphicsView *view);
+    void repositionItems();
 
 protected:
     void wheelEvent(QGraphicsSceneWheelEvent *event) override;
@@ -29,7 +31,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
-    void repositionItems();
+
 
     QGraphicsView *view;
     QList<InputItem *> inputItems;
@@ -41,6 +43,8 @@ private:
 
     std::pair<QPointF, Component *> getNearestConnectionPoint(const QPointF &scenePos);
     Component *startComponent;
+
+    Qt::Orientation lastDirection;
 
 };
 

@@ -81,6 +81,14 @@ build CMakeFiles/BitFlip.dir/newproject.cpp.o: CXX_COMPILER__BitFlip_unscanned_D
   OBJECT_DIR = CMakeFiles/BitFlip.dir
   OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
 
+build CMakeFiles/BitFlip.dir/connection.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/connection.cpp || cmake_object_order_depends_target_BitFlip
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/BitFlip.dir/connection.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics -fno-direct-access-external-data
+  INCLUDES = -I/home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
+  OBJECT_DIR = CMakeFiles/BitFlip.dir
+  OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
+
 build CMakeFiles/BitFlip.dir/canvas.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/canvas.cpp || cmake_object_order_depends_target_BitFlip
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/BitFlip.dir/canvas.cpp.o.d
@@ -121,14 +129,6 @@ build CMakeFiles/BitFlip.dir/outputitem.cpp.o: CXX_COMPILER__BitFlip_unscanned_D
   OBJECT_DIR = CMakeFiles/BitFlip.dir
   OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
 
-build CMakeFiles/BitFlip.dir/connection.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/connection.cpp || cmake_object_order_depends_target_BitFlip
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/BitFlip.dir/connection.cpp.o.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics -fno-direct-access-external-data
-  INCLUDES = -I/home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui
-  OBJECT_DIR = CMakeFiles/BitFlip.dir
-  OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
-
 build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp || cmake_object_order_depends_target_BitFlip
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o.d
@@ -145,7 +145,7 @@ build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_CO
 #############################################
 # Link the executable BitFlip
 
-build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/connection.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /usr/lib/libQt6Widgets.so.6.7.2 /usr/lib/libQt6Gui.so.6.7.2 /usr/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
+build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/connection.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /usr/lib/libQt6Widgets.so.6.7.2 /usr/lib/libQt6Gui.so.6.7.2 /usr/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = /usr/lib/libQt6Widgets.so.6.7.2  /usr/lib/libQt6Gui.so.6.7.2  /usr/lib/libQt6Core.so.6.7.2  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   OBJECT_DIR = CMakeFiles/BitFlip.dir
@@ -230,7 +230,7 @@ build BitFlip_autogen_timestamp_deps: phony
 #############################################
 # Utility command for BitFlip_autogen
 
-build BitFlip_autogen: phony CMakeFiles/BitFlip_autogen BitFlip_autogen/include/ui_mainwindow.h BitFlip_autogen/include/ui_newproject.h BitFlip_autogen/timestamp BitFlip_autogen/mocs_compilation.cpp BitFlip_autogen_timestamp_deps
+build BitFlip_autogen: phony CMakeFiles/BitFlip_autogen BitFlip_autogen/timestamp BitFlip_autogen/mocs_compilation.cpp BitFlip_autogen_timestamp_deps
 
 
 #############################################
@@ -256,7 +256,7 @@ build BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp | ${cmake_ninja_workdir}BitFlip_
 #############################################
 # Phony custom command for CMakeFiles/BitFlip_autogen
 
-build CMakeFiles/BitFlip_autogen BitFlip_autogen/include/ui_mainwindow.h BitFlip_autogen/include/ui_newproject.h | ${cmake_ninja_workdir}CMakeFiles/BitFlip_autogen ${cmake_ninja_workdir}BitFlip_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}BitFlip_autogen/include/ui_newproject.h: phony BitFlip_autogen/timestamp || BitFlip_autogen_timestamp_deps
+build CMakeFiles/BitFlip_autogen | ${cmake_ninja_workdir}CMakeFiles/BitFlip_autogen: phony BitFlip_autogen/timestamp || BitFlip_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

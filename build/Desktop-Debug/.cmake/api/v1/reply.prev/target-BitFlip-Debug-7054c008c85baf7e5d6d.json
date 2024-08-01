@@ -47,7 +47,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 26,
+				"line" : 28,
 				"parent" : 0
 			},
 			{
@@ -71,13 +71,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 78,
+				"line" : 79,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 61,
+				"line" : 65,
 				"parent" : 0
 			},
 			{
@@ -285,25 +285,25 @@
 				0,
 				1,
 				2,
+				3,
+				4,
 				5,
+				6,
+				7,
+				8,
 				9,
-				11,
-				13,
-				15,
-				17,
-				20,
-				24
+				18
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "BitFlip_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "BitFlip_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "BitFlip_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "BitFlip::@6890427a1f51a3e7e1df",
@@ -377,48 +377,42 @@
 				0,
 				1,
 				2,
+				3,
+				4,
 				5,
+				6,
+				7,
+				8,
 				9,
-				11,
-				13,
-				15,
-				17,
-				20,
-				24
+				18
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				3,
-				6,
-				8,
 				10,
+				11,
 				12,
+				13,
 				14,
-				16,
-				19,
-				21,
-				22
+				15
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				4,
-				7,
-				18,
-				23
+				16,
+				17
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				25,
-				26
+				19,
+				20
 			]
 		}
 	],
@@ -445,34 +439,15 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "mainwindow.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"path" : "mainwindow.ui",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "newproject.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "newproject.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"path" : "newproject.ui",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
-			"path" : "canvas.h",
-			"sourceGroupIndex" : 1
+			"compileGroupIndex" : 0,
+			"path" : "connection.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
@@ -482,19 +457,9 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "component.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "component.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "andgate.h",
-			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
@@ -504,19 +469,9 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "inputitem.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "inputitem.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 4,
-			"path" : "outputitem.h",
-			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
@@ -526,31 +481,38 @@
 		},
 		{
 			"backtrace" : 4,
+			"path" : "canvas.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "component.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "andgate.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "inputitem.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "newproject.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "outputitem.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
 			"path" : "assets.qrc",
 			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 4,
-			"path" : "connection.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
-			"compileGroupIndex" : 0,
-			"path" : "connection.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop-Debug/BitFlip_autogen/include/ui_mainwindow.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 0,
-			"isGenerated" : true,
-			"path" : "build/Desktop-Debug/BitFlip_autogen/include/ui_newproject.h",
-			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 0,

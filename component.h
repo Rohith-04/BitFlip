@@ -5,17 +5,23 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 
+class Canvas;
+
+enum ComponentType{DEFAULT = 0, INPUT , OUTPUT, AND,OR,EXOR, NAND, NOR, NOT};
+
 class Component : public QGraphicsItem {
 public:
-    explicit Component(QGraphicsItem *parent = nullptr);
+    explicit Component(ComponentType type, QGraphicsItem *parent = nullptr);
     virtual QRectF boundingRect() const override = 0;
-    virtual QList<QPointF> getConnectionPoints() const = 0;
+    virtual QList<QPointF> getConnectionPoints() = 0;
+    QVector2D getPosition();
+    ComponentType getType() const;
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;    
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;  
+    ComponentType m_type;
 };
 
 #endif // COMPONENT_H

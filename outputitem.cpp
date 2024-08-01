@@ -1,22 +1,27 @@
 #include "outputitem.h"
 #include <QPainter>
 #include <QDebug>
-#include <QFile>
-#include <QGraphicsSceneMouseEvent>
+
+int OutputItem::count = 0;
 
 OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-            :Component(parent), m_active(false)
+    : Component(OUTPUT, parent), m_active(false), m_id(count++)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
+
     // Check if pixmaps are loaded
     if (m_activePixmap.isNull() || m_inactivePixmap.isNull()) {
         qDebug() << "Failed to load output images:" << activeImagePath << inactiveImagePath;
     }
+
+    m_outputData.position = QVector2D(pos().x(), pos().y());
+    m_outputData.connectionPoint = getConnectionPoints().first();
+    m_outputData.id = m_id;
 }
 
-QRectF OutputItem::boundingRect() const{
-    return QRect(0,0,m_activePixmap.width(), m_activePixmap.height());
+QRectF OutputItem::boundingRect() const {
+    return QRectF(0, 0, m_activePixmap.width(), m_activePixmap.height());
 }
 
 void OutputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -29,27 +34,34 @@ void OutputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     }
 }
 
+
 void OutputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         m_active = !m_active;
         update(); // Redraw the item
+        qDebug() << getType();
     }
     Component::mousePressEvent(event);
 }
+
 
 void OutputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     // Handle mouse release if needed
     Component::mouseReleaseEvent(event);
 }
 
-QList<QPointF> OutputItem::getConnectionPoints() const {
+QList<QPointF> OutputItem::getConnectionPoints() {
     QRectF bounds = boundingRect();
     QList<QPointF> points;
-    QPointF t_point(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5);
+    QPointF t_point(bounds.left() + 1.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
 
-    for(auto i = points.begin(); i != points.end(); ++i){
-        qDebug() << "op--->" << (*i);
+    for (const auto &point : points) {
+        qDebug() << "Output connection point:" << point;
     }
     return points;
+}
+
+OutputItem::OutputItemData OutputItem::getOutputItemData() const {
+    return m_outputData;
 }

@@ -1,19 +1,24 @@
 #include "inputitem.h"
 #include <QPainter>
 #include <QDebug>
-#include <QFile>
-#include <QGraphicsSceneMouseEvent>
+
+int InputItem::count = 0;
 
 InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-    : Component(parent), m_active(false)
+    : Component(INPUT, parent), m_active(false), m_id(count++)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
+    state = false;
 
     // Check if pixmaps are loaded
     if (m_activePixmap.isNull() || m_inactivePixmap.isNull()) {
-        qDebug() << "Failed to input load images:" << activeImagePath << inactiveImagePath;
+        qDebug() << "Failed to load input images:" << activeImagePath << inactiveImagePath;
     }
+
+    m_inputData.position = QVector2D(pos().x(), pos().y());
+    m_inputData.connectionPoint = getConnectionPoints().first();
+    m_inputData.id = m_id;
 }
 
 QRectF InputItem::boundingRect() const {
@@ -34,9 +39,28 @@ void InputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         m_active = !m_active;
-        update(); // Redraw the item
+        update(); // Redraws the item
+        state = !state;
+        qDebug() << m_inputData.id;
+        qDebug() << state;
+        qDebug() << getType();
+
     }
     Component::mousePressEvent(event);
+}
+
+void InputItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    if (event->buttons() & Qt::LeftButton) {
+        // Handle movement
+        Component::mouseMoveEvent(event);
+
+        // Update the position of the connection points
+        m_inputData.position = QVector2D(pos().x(), pos().y());
+        m_inputData.connectionPoint = getConnectionPoints().first();
+
+        qDebug() << "Item moved to position:" << m_inputData.position;
+        qDebug() << "Connection point updated to:" << m_inputData.connectionPoint;
+    }
 }
 
 void InputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
@@ -44,29 +68,24 @@ void InputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
     Component::mouseReleaseEvent(event);
 }
 
-/*
-void InputItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
-    if(event->button() == Qt::LeftButton){
-        qDebug() << "Removing Input Item";
-        if(scene()){
-            scene()->removeItem(this);
-        }
-        delete this;
-    }
-}
-*/
-
-QList<QPointF> InputItem::getConnectionPoints() const {
+QList<QPointF> InputItem::getConnectionPoints() {
     QList<QPointF> points;
     QRectF bounds = boundingRect();
 
-    QPointF t_point(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5);
+    QPointF t_point(bounds.right() - 1.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
 
-    for(auto i = points.begin(); i != points.end(); ++i){
-        qDebug() << "ip-----> " << (*i);
+    for (const auto &point : points) {
+        qDebug() << "Connection point:" << point;
     }
 
     return points;
 }
 
+InputItem::InputItemData InputItem::getInputItemData() const {
+    return m_inputData;
+}
+
+bool InputItem::getState(){
+    return state;
+}
