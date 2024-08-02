@@ -17,6 +17,8 @@ public:
     QVector2D getPosition();
     ComponentType getType() const;
 
+    virtual void handleLogic() = 0;
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;

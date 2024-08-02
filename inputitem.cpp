@@ -1,4 +1,5 @@
 #include "inputitem.h"
+#include "connection.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -41,10 +42,13 @@ void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         m_active = !m_active;
         update(); // Redraws the item
         state = !state;
-        qDebug() << m_inputData.id;
-        qDebug() << state;
-        qDebug() << getType();
 
+        //Update the wire it is connected to
+        for (Connection *connection : Connection::listOfConnections) {
+            if (connection->m_connectionData.startComponent == this) {
+                connection->setState(m_active);
+            }
+        }
     }
     Component::mousePressEvent(event);
 }

@@ -5,7 +5,10 @@
 #include <utility>
 #include <limits>
 
-Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr), isDrawingConnection(false), currentConnection(nullptr) {}
+Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr), isDrawingConnection(false), currentConnection(nullptr) {
+    m_startComponent = nullptr;
+    m_endComponent = nullptr;
+}
 
 void Canvas::addComponent(QGraphicsItem *comp) {
     if (!comp) {
@@ -147,8 +150,9 @@ void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
             addItem(currentConnection);
             lastPoint = connectionPoint;
             currentConnection->addPoint(lastPoint);
-            startComponent = component;
+            m_startComponent = component;
             lastDirection = Qt::Horizontal;  // Initialize with a default direction
+            currentConnection->m_connectionData.startPosition = result.first; // Finalising the first connection point
         }
     }
     QGraphicsScene::mousePressEvent(event);
@@ -188,9 +192,9 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         qDebug() << "Finished Drawing";
         auto result = getNearestConnectionPoint(event->scenePos());
         QPointF endPoint = result.first;
-        Component *endComponent = result.second;
+        m_endComponent = result.second;
 
-        if (endComponent && endComponent != startComponent) {
+        if (m_endComponent && m_endComponent != m_startComponent) {
             // Add the final segment based on the last direction
             qreal dx = qAbs(endPoint.x() - lastPoint.x());
             qreal dy = qAbs(endPoint.y() - lastPoint.y());
@@ -206,14 +210,23 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 
             // Set the connection as active once completed
             currentConnection->setActive(true);
-        } else {
+        }
+        else {
             // Remove the incomplete connection if it doesn't end at a valid component
             removeItem(currentConnection);
             delete currentConnection;
         }
+        currentConnection->m_connectionData.startComponent = m_startComponent; // Storing the start component
+        currentConnection->m_connectionData.endComponent = m_endComponent; // Storing the end component
+        currentConnection->m_connectionData.endPosition = result.first; //Finalising last connection position
+
+        qDebug() << currentConnection->m_connectionData.startComponent->getType();
+        qDebug() << currentConnection->m_connectionData.endComponent->getType();
+        //Resetting the things
         isDrawingConnection = false;
         currentConnection = nullptr;
-        startComponent = nullptr;
+        m_startComponent = nullptr;
+        m_endComponent = nullptr;
         update();  // Ensure the scene is updated
     }
     QGraphicsScene::mouseReleaseEvent(event);
@@ -261,3 +274,4 @@ std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &
 
     return std::make_pair(nearest, nearComponent);
 }
+

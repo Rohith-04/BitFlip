@@ -23,6 +23,7 @@ public:
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     QList<QPointF> getConnectionPoints () override;
 
+    void handleLogic() {}
 private:
     QPixmap m_pixmap;
     int m_id;

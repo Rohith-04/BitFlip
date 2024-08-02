@@ -23,6 +23,8 @@ public:
     QList<QPointF> getConnectionPoints() override;
     OutputItemData getOutputItemData() const;
 
+    void handleLogic() override;
+
 protected:
     // Uncomment and implement if mouse press events are needed
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

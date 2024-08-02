@@ -18,15 +18,18 @@ public:
         QPointF endPosition;
     };
 
+    static QVector<Connection *> listOfConnections;
     void addPoint(const QPointF &point);
     void setColor(const QColor &color);
     void setActive(bool active);
+    void setState(bool state);
     QRectF boundingRect() const ;
 
-    void setState(bool state);
     bool getState();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    ConnectionData m_connectionData;
+    //void logicHandling();
 
 private:
     QPainterPath path;
@@ -34,7 +37,6 @@ private:
     bool isActive;
     int m_id;
     static int count;
-    ConnectionData m_connectionData;
 };
 
 #endif // CONNECTION_H

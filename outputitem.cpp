@@ -1,4 +1,5 @@
 #include "outputitem.h"
+#include "connection.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -64,4 +65,14 @@ QList<QPointF> OutputItem::getConnectionPoints() {
 
 OutputItem::OutputItemData OutputItem::getOutputItemData() const {
     return m_outputData;
+}
+
+void OutputItem::handleLogic() {
+    // Find the connection this OutputItem is connected to
+    for (Connection *connection : Connection::listOfConnections) {
+        if (connection->m_connectionData.endComponent == this) {
+            m_active = connection->getState();
+            update(); // Redraw the item
+        }
+    }
 }

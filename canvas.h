@@ -42,7 +42,8 @@ private:
     QPointF lastPoint;
 
     std::pair<QPointF, Component *> getNearestConnectionPoint(const QPointF &scenePos);
-    Component *startComponent;
+    Component *m_startComponent;
+    Component *m_endComponent;
 
     Qt::Orientation lastDirection;
 

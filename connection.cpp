@@ -1,9 +1,12 @@
 // connection.cpp
 #include "connection.h"
+#include "canvas.h"
 #include <QPainter>
 #include <QPen>
 
 int Connection::count = 0;
+QVector<Connection *> Connection::listOfConnections; //Declaring the static members
+
 
 Connection::Connection(QGraphicsItem *parent)
     : QGraphicsPathItem(parent), color(Qt::black), isActive(false)
@@ -12,6 +15,8 @@ Connection::Connection(QGraphicsItem *parent)
     m_connectionData.startComponent = nullptr;
     m_connectionData.endComponent = nullptr;
     count++;
+
+    listOfConnections.append(this);
 }
 
 void Connection::addPoint(const QPointF &point)
@@ -53,4 +58,24 @@ void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     painter->drawPath(path);
 }
 
-void setState(bool state){}
+void Connection::setState(bool state){
+    isActive = state;
+    update();
+
+    if(m_connectionData.endComponent){
+        m_connectionData.endComponent->handleLogic();
+    }
+}
+
+/*
+void Connection::logicHandling(){
+    for(Connection *i : listOfConnections){
+        Component *startComp = i->m_connectionData.startComponent;
+        Component *endComp = i->m_connectionData.endComponent;
+    }
+}
+*/
+
+bool Connection::getState() {
+    return isActive;  // Implement the method
+}

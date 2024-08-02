@@ -21,6 +21,8 @@ public:
     QList<QPointF> getConnectionPoints() override;
     InputItemData getInputItemData() const;
 
+    void handleLogic() override {} //Input dont need to handle any logic it is implemented in mousePressEvent
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
