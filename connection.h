@@ -19,11 +19,12 @@ public:
     };
 
     static QVector<Connection *> listOfConnections;
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     void addPoint(const QPointF &point);
     void setColor(const QColor &color);
     void setActive(bool active);
     void setState(bool state);
-    QRectF boundingRect() const ;
+    QRectF boundingRect() const override;
 
     bool getState();
 

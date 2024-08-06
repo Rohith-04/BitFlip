@@ -11,6 +11,9 @@ QVector<Connection *> Connection::listOfConnections; //Declaring the static memb
 Connection::Connection(QGraphicsItem *parent)
     : QGraphicsPathItem(parent), color(Qt::black), isActive(false)
 {
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsFocusable);
     //setZValue(-1);
     m_connectionData.startComponent = nullptr;
     m_connectionData.endComponent = nullptr;
@@ -19,6 +22,15 @@ Connection::Connection(QGraphicsItem *parent)
     listOfConnections.append(this);
 }
 
+void Connection::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
+    if(event->button() == Qt::LeftButton){
+        qDebug() << "Removing Connection";
+        if(scene()){
+            scene()->removeItem(this);
+        }
+    delete this;
+    }
+}
 void Connection::addPoint(const QPointF &point)
 {
     if (path.elementCount() == 0) {
@@ -79,3 +91,4 @@ void Connection::logicHandling(){
 bool Connection::getState() {
     return isActive;  // Implement the method
 }
+

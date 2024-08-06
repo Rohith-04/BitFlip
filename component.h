@@ -16,8 +16,9 @@ public:
     virtual QList<QPointF> getConnectionPoints() = 0;
     QVector2D getPosition();
     ComponentType getType() const;
-
     virtual void handleLogic() = 0;
+
+    virtual ~Component();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;

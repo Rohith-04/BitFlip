@@ -17,7 +17,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btn_newProject_clicked() {
     ptr_newProject = new NewProject(this); //Creating the New Project window in the constructor
+
+    //Closes even the main window when the new project window is closed
+    connect(ptr_newProject, &NewProject::closed, this, [this]() {
+            this->show(); // Show MainWindow when NewProject is destroyed
+            qDebug() << "Showing Main Window";
+        });
     ptr_newProject->show();
-    this->hide(); //So that if the user wants to go to homepage he can do it using the button instead of killing the window
+    this->hide();
 }
 

@@ -17,7 +17,6 @@ OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveIm
     }
 
     m_outputData.position = QVector2D(pos().x(), pos().y());
-    m_outputData.connectionPoint = getConnectionPoints().first();
     m_outputData.id = m_id;
 }
 
@@ -30,7 +29,8 @@ void OutputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     Q_UNUSED(widget);
     if (m_active) {
         painter->drawPixmap(0, 0, m_activePixmap);
-    } else {
+    }
+    else {
         painter->drawPixmap(0, 0, m_inactivePixmap);
     }
 }
@@ -54,12 +54,9 @@ void OutputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 QList<QPointF> OutputItem::getConnectionPoints() {
     QRectF bounds = boundingRect();
     QList<QPointF> points;
-    QPointF t_point(bounds.left() + 1.5, bounds.top() + bounds.height() * 0.5);
+    QPointF t_point(bounds.left() + 3.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
-
-    for (const auto &point : points) {
-        qDebug() << "Output connection point:" << point;
-    }
+    m_outputData.connectionPoint = t_point;
     return points;
 }
 
@@ -73,6 +70,7 @@ void OutputItem::handleLogic() {
         if (connection->m_connectionData.endComponent == this) {
             m_active = connection->getState();
             update(); // Redraw the item
+            break; //since the outputs have only one connection
         }
     }
 }

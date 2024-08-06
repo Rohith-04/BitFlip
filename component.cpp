@@ -36,3 +36,7 @@ QVector2D Component::getPosition(){
 ComponentType Component::getType() const{
     return m_type;
 }
+
+Component::~Component(){
+    qDebug() << "Virtual Destructoe is called";
+}

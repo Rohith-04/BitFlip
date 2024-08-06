@@ -12,6 +12,7 @@ public:
         QVector2D position;
         int id;
         QPointF connectionPoint;
+        QString name;
     };   
     InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
 

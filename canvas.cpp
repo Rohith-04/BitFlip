@@ -216,9 +216,11 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
             removeItem(currentConnection);
             delete currentConnection;
         }
+        if(currentConnection){
         currentConnection->m_connectionData.startComponent = m_startComponent; // Storing the start component
         currentConnection->m_connectionData.endComponent = m_endComponent; // Storing the end component
         currentConnection->m_connectionData.endPosition = result.first; //Finalising last connection position
+        }
 
         qDebug() << currentConnection->m_connectionData.startComponent->getType();
         qDebug() << currentConnection->m_connectionData.endComponent->getType();

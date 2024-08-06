@@ -7,6 +7,16 @@
 
 class Canvas;
 
+enum TerminalType{
+    Input,
+    Output
+};
+
+struct ConnectionPoint{
+    TerminalType terminalType;
+    bool isActive;
+};
+
 class AndGate : public Component {
 public:
     explicit AndGate(QGraphicsItem *parent = nullptr);
@@ -14,16 +24,16 @@ public:
     struct AndGateData{
         QVector2D position;
         int id;
-        QList<QPointF> connectionPoints;
+        std::vector<ConnectionPoint> connectionPoints; // A struct which holds the type of connnectionPoint and their states
     };
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override; //have to override this function to update connectionPoints
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     QList<QPointF> getConnectionPoints () override;
 
-    void handleLogic() {}
+    void handleLogic() override;
 private:
     QPixmap m_pixmap;
     int m_id;

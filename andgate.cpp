@@ -22,7 +22,7 @@ AndGate::AndGate(QGraphicsItem *parent)
         qDebug() << "Successfully loaded" << resourcePath;
     }
     m_andGateData.position = QVector2D(pos().x(), pos().y());
-    m_andGateData.connectionPoints = getConnectionPoints();
+    //m_andGateData.connectionPoints = getConnectionPoints();
     m_andGateData.id = m_id;
 
     count++;
@@ -45,7 +45,7 @@ void AndGate::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         Component::mouseMoveEvent(event);
         qDebug() << "AndGate moving";
         m_andGateData.position = QVector2D(pos().x(), pos().y());
-        m_andGateData.connectionPoints = getConnectionPoints();
+        //m_andGateData.connectionPoints = getConnectionPoints();
         qDebug() << m_andGateData.id;
         //qDebug() << "Item moved to position:" << m_andGateData.position;
         //qDebug() << "Connection point updated to:" << m_andGateData.connectionPoints;
@@ -77,4 +77,8 @@ QList<QPointF> AndGate::getConnectionPoints() {
     }
 
     return points;
+}
+
+void AndGate::handleLogic(){
+
 }

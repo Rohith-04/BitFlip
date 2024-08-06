@@ -50,8 +50,14 @@ NewProject::NewProject(QWidget *parent)
     canvas->repositionItems();
 }
 
+void NewProject::closeEvent(QCloseEvent *event){
+    emit closed();
+    QWidget::closeEvent(event);
+}
+
 NewProject::~NewProject() {
     delete ui;
+    qDebug() << "New Project Window is destroyed";
 }
 
 void NewProject::on_btn_andgate_clicked() {

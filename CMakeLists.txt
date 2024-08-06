@@ -22,6 +22,7 @@ set(PROJECT_SOURCES
     andgate.cpp
     inputitem.cpp
     outputitem.cpp
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

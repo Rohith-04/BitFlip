@@ -18,7 +18,6 @@ InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImag
     }
 
     m_inputData.position = QVector2D(pos().x(), pos().y());
-    m_inputData.connectionPoint = getConnectionPoints().first();
     m_inputData.id = m_id;
 }
 
@@ -44,7 +43,8 @@ void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         state = !state;
 
         //Update the wire it is connected to
-        for (Connection *connection : Connection::listOfConnections) {
+        QList<Connection*> connections = Connection::listOfConnections;
+        for (Connection *connection : connections) {
             if (connection->m_connectionData.startComponent == this) {
                 connection->setState(m_active);
             }
@@ -78,6 +78,7 @@ QList<QPointF> InputItem::getConnectionPoints() {
 
     QPointF t_point(bounds.right() - 1.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
+    m_inputData.connectionPoint = t_point;
 
     for (const auto &point : points) {
         qDebug() << "Connection point:" << point;

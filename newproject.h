@@ -32,8 +32,11 @@ private slots:
     void on_btn_addInput_clicked();
     void on_btn_addOutput_clicked();
 
+signals:
+    void closed();
 private:
     Ui::NewProject *ui;
+    void closeEvent(QCloseEvent *event);
     QGraphicsView *view;
     Canvas *canvas;
     QPushButton *btnAddAndGate;
