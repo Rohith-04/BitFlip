@@ -13,5 +13,6 @@
         <file>assets/xor_gate.png</file>
         <file>assets/and_gate.svg</file>
         <file>assets/ip-not_active.svg</file>
+        <file>and_gate.jpeg</file>
     </qresource>
 </RCC>

@@ -69,7 +69,7 @@ void OutputItem::handleLogic() {
     for (Connection *connection : Connection::listOfConnections) {
         if (connection->m_connectionData.endComponent == this) {
             m_active = connection->getState();
-            update(); // Redraw the item
+            update();
             break; //since the outputs have only one connection
         }
     }

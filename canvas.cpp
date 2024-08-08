@@ -229,7 +229,7 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         currentConnection = nullptr;
         m_startComponent = nullptr;
         m_endComponent = nullptr;
-        update();  // Ensure the scene is updated
+        update();
     }
     QGraphicsScene::mouseReleaseEvent(event);
 }
@@ -266,12 +266,6 @@ std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &
         } else {
             qDebug() << "  Item is not a Component";
         }
-    }
-
-    if (nearComponent) {
-        qDebug() << "Nearest connection point:" << nearest << "on component:" << nearComponent;
-    } else {
-        qDebug() << "No component found within distance:" << MAX_DISTANCE;
     }
 
     return std::make_pair(nearest, nearComponent);

@@ -9,6 +9,7 @@
 	"INCLUDE_DIR" : "/home/bleach/Desktop/cpp-gui/BitFlip/build/Desktop-Debug/BitFlip_autogen/include",
 	"INPUTS" : 
 	[
+		"/home/bleach/Desktop/cpp-gui/BitFlip/and_gate.jpeg",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/ip-not_active.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/op-active.png",
 		"/home/bleach/Desktop/cpp-gui/BitFlip/assets/op-not_active.png",

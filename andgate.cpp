@@ -1,15 +1,21 @@
 #include "andgate.h"
+#include "connection.h"
 #include <QPainter>
 #include <QFile>
 #include <QDebug>
 #include <QGraphicsScene>
+#include <utility>
 
 int AndGate::count = 0;
 
 AndGate::AndGate(QGraphicsItem *parent)
     : Component(AND, parent)
 {
-    QString resourcePath = ":/images/assets/and_gate.svg";
+    state = false;
+    input1 = false;
+    input2 = false;
+
+    QString resourcePath = ":/images/assets/and_gate.png";
     m_pixmap = QPixmap(resourcePath);
 
     if (!QFile::exists(resourcePath)) {
@@ -18,14 +24,16 @@ AndGate::AndGate(QGraphicsItem *parent)
 
     if (m_pixmap.isNull()) {
         qDebug() << "Failed to load" << resourcePath;
-    } else {
+    }
+    else {
         qDebug() << "Successfully loaded" << resourcePath;
     }
     m_andGateData.position = QVector2D(pos().x(), pos().y());
-    //m_andGateData.connectionPoints = getConnectionPoints();
     m_andGateData.id = m_id;
 
     count++;
+
+    //listOfAndComponents.append(this);
 }
 
 QRectF AndGate::boundingRect() const {
@@ -40,16 +48,12 @@ void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 void AndGate::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if(event->buttons() & Qt::LeftButton){
-
         //Handles Movement
         Component::mouseMoveEvent(event);
-        qDebug() << "AndGate moving";
         m_andGateData.position = QVector2D(pos().x(), pos().y());
-        //m_andGateData.connectionPoints = getConnectionPoints();
-        qDebug() << m_andGateData.id;
+        //qDebug() << m_andGateData.id;
         //qDebug() << "Item moved to position:" << m_andGateData.position;
-        //qDebug() << "Connection point updated to:" << m_andGateData.connectionPoints;
-        qDebug() << getType();
+        //qDebug() << getType();
     }
 }
 
@@ -72,13 +76,41 @@ QList<QPointF> AndGate::getConnectionPoints() {
     points << QPointF(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.75f);
     points << QPointF(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5f);
 
-    for(auto i = points.begin(); i != points.end(); ++i){
-        qDebug() << "andGate------> " << (*i);
-    }
-
     return points;
 }
 
-void AndGate::handleLogic(){
-
+bool AndGate::getState(){
+    return state;
 }
+
+void AndGate::handleLogic() {
+    Connection *inputConnection1 = nullptr;
+    Connection *inputConnection2 = nullptr;
+    Connection *outputConnection = nullptr;
+
+    // Find the first and second input connections
+    for (auto connection : Connection::listOfConnections) {
+        if (connection->m_connectionData.endComponent == this) {
+            if (!inputConnection1) {
+                inputConnection1 = connection;
+                this->input1 = connection->getState();
+            } else if (connection != inputConnection1) {
+                inputConnection2 = connection;
+                this->input2 = connection->getState();
+            }
+        }
+    }
+
+    //And Gate Logic
+    this->state = this->input1 && this->input2;
+
+    // Find the output connection and set its state
+    for (auto connection : Connection::listOfConnections) {
+        if (connection->m_connectionData.startComponent == this) {
+            outputConnection = connection;
+            outputConnection->setState(this->state);
+            break;  // Assuming only one output connection
+        }
+    }
+}
+
