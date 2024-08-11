@@ -222,8 +222,8 @@ void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
         currentConnection->m_connectionData.endPosition = result.first; //Finalising last connection position
         }
 
-        qDebug() << currentConnection->m_connectionData.startComponent->getType();
-        qDebug() << currentConnection->m_connectionData.endComponent->getType();
+        //qDebug() << currentConnection->m_connectionData.startComponent->getType();
+        //qDebug() << currentConnection->m_connectionData.endComponent->getType();
         //Resetting the things
         isDrawingConnection = false;
         currentConnection = nullptr;
@@ -240,22 +240,22 @@ std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &
     Component *nearComponent = nullptr;
     qreal minDistance = std::numeric_limits<qreal>::max();
 
-    qDebug() << "Scene position:" << scenePos;
-    qDebug() << "Number of items in scene:" << items().count();
+    //qDebug() << "Scene position:" << scenePos;
+    //qDebug() << "Number of items in scene:" << items().count();
 
     for (QGraphicsItem *item : items()) {
-        qDebug() << "Checking item type:" << item->type();
+        //qDebug() << "Checking item type:" << item->type();
 
         Component *component = dynamic_cast<Component*>(item);
         if (component) {
-            qDebug() << "  Found component:" << component;
+            //qDebug() << "  Found component:" << component;
             QList<QPointF> connectionPoints = component->getConnectionPoints();
-            qDebug() << "  Number of connection points:" << connectionPoints.size();
+            //qDebug() << "  Number of connection points:" << connectionPoints.size();
 
             for (const QPointF &point : connectionPoints) {
                 QPointF scenePoint = component->mapToScene(point);
                 qreal distance = QLineF(scenePos, scenePoint).length();
-                qDebug() << "    Connection point:" << scenePoint << "Distance:" << distance;
+                //qDebug() << "    Connection point:" << scenePoint << "Distance:" << distance;
 
                 if (distance < minDistance && distance < MAX_DISTANCE) {
                     minDistance = distance;
@@ -264,7 +264,7 @@ std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &
                 }
             }
         } else {
-            qDebug() << "  Item is not a Component";
+            //qDebug() << "  Item is not a Component";
         }
     }
 

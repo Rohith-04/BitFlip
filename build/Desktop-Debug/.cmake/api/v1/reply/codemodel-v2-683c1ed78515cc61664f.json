@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-782a761087aa071fc103.json",
+					"jsonFile" : "directory-.-Debug-6bd5d367e4439cf2a65f.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "BitFlip::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-BitFlip-Debug-8c1bfeda2877d46682be.json",
+					"jsonFile" : "target-BitFlip-Debug-bfd9e4a7b534ffc0c13f.json",
 					"name" : "BitFlip",
 					"projectIndex" : 0
 				},

@@ -17,7 +17,7 @@ void Component::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
 void Component::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
     if (event->buttons() & Qt::LeftButton) {
-        qDebug() << "Component mouse move event";
+        //qDebug() << "Component mouse move event";
         QGraphicsItem::mouseMoveEvent(event);
     }
 }
@@ -38,5 +38,5 @@ ComponentType Component::getType() const{
 }
 
 Component::~Component(){
-    qDebug() << "Virtual Destructoe is called";
+    qDebug() << "Virtual Destructor is called";
 }

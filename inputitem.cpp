@@ -43,10 +43,10 @@ void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         state = !state;
 
         //Update the wire it is connected to
-        QList<Connection*> connections = Connection::listOfConnections;
-        for (Connection *connection : connections) {
+        for (Connection *connection : Connection::listOfConnections) {
             if (connection->m_connectionData.startComponent == this) {
                 connection->setState(m_active);
+                connection->m_connectionData.state = m_active; //update it also in its corresponding struct so that it can be accessed later in the logic evaluation
             }
         }
     }

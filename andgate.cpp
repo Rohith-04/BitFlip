@@ -84,32 +84,40 @@ bool AndGate::getState(){
 }
 
 void AndGate::handleLogic() {
-    Connection *inputConnection1 = nullptr;
-    Connection *inputConnection2 = nullptr;
-    Connection *outputConnection = nullptr;
+    Connection *connection = nullptr;
 
-    // Find the first and second input connections
-    for (auto connection : Connection::listOfConnections) {
-        if (connection->m_connectionData.endComponent == this) {
-            if (!inputConnection1) {
-                inputConnection1 = connection;
-                this->input1 = connection->getState();
-            } else if (connection != inputConnection1) {
-                inputConnection2 = connection;
-                this->input2 = connection->getState();
-            }
+    // Initialize inputs
+    this->input1 = false;
+    this->input2 = false;
+
+    // Find the connection for input1
+    for (auto &connection1 : Connection::listOfConnections) {
+        if (connection1->m_connectionData.endComponent == this) {
+            this->input1 = connection1->getState();
+            connection = connection1;
+            qDebug() << "input1 set to:" << this->input1;
+            break;
         }
     }
 
-    //And Gate Logic
-    this->state = this->input1 && this->input2;
+    // Find the connection for input2, making sure it's not the same as the one for input1
+    for (auto &connection2 : Connection::listOfConnections) {
+        if (connection2->m_connectionData.endComponent == this && connection2 != connection) {
+            this->input2 = connection2->getState();
+            qDebug() << "input2 set to:" << this->input2;
+            break;
+        }
+    }
 
-    // Find the output connection and set its state
-    for (auto connection : Connection::listOfConnections) {
-        if (connection->m_connectionData.startComponent == this) {
-            outputConnection = connection;
-            outputConnection->setState(this->state);
-            break;  // Assuming only one output connection
+    // Compute the state
+    this->state = input1 && input2;
+    qDebug() << "Computed state:" << this->state;
+
+    // Update connections starting with this gate
+    for (auto &connection3 : Connection::listOfConnections) {
+        if (connection3->m_connectionData.startComponent == this) {
+            connection3->setState(this->state);
+            qDebug() << "Updated connection3 state to:" << this->state;
         }
     }
 }

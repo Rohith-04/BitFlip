@@ -5,7 +5,7 @@
 #include <QPen>
 
 int Connection::count = 0;
-QVector<Connection *> Connection::listOfConnections; //Declaring the static members
+std::vector<Connection *> Connection::listOfConnections; //Declaring the static member
 
 
 Connection::Connection(QGraphicsItem *parent)
@@ -17,20 +17,28 @@ Connection::Connection(QGraphicsItem *parent)
     //setZValue(-1);
     m_connectionData.startComponent = nullptr;
     m_connectionData.endComponent = nullptr;
+    m_connectionData.state = false;
     count++;
 
-    listOfConnections.append(this);
+    listOfConnections.push_back(this);
 }
 
-void Connection::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event){
-    if(event->button() == Qt::LeftButton){
+void Connection::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+    if (event->button() == Qt::LeftButton) {
         qDebug() << "Removing Connection";
-        if(scene()){
+        auto it = std::find(Connection::listOfConnections.begin(), Connection::listOfConnections.end(), this);
+
+        if (it != Connection::listOfConnections.end()) {
+            Connection::listOfConnections.erase(it);
+        }
+        if (scene()) {
             scene()->removeItem(this);
         }
-    delete this;
+
+        delete this;
     }
 }
+
 void Connection::addPoint(const QPointF &point)
 {
     if (path.elementCount() == 0) {
@@ -89,6 +97,6 @@ void Connection::logicHandling(){
 */
 
 bool Connection::getState() {
-    return isActive;  // Implement the method
+    return isActive;
 }
 

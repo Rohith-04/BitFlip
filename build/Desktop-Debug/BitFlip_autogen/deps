@@ -462,6 +462,14 @@ BitFlip_autogen/timestamp: \
 	/usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginConfig.cmake \
 	/usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargets-relwithdebinfo.cmake \
 	/usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargets.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPluginAdditionalTargetInfo.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPluginConfig.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPluginTargets-relwithdebinfo.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglPlatformIntegrationPluginTargets.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginAdditionalTargetInfo.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginConfig.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginTargets-relwithdebinfo.cmake \
+	/usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginTargets.cmake \
 	/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginAdditionalTargetInfo.cmake \
 	/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginConfig.cmake \
 	/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargets-relwithdebinfo.cmake \

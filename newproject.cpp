@@ -40,7 +40,7 @@ NewProject::NewProject(QWidget *parent)
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
     setCentralWidget(centralWidget);
-
+/*
     InputItem *ip1 = new InputItem(":images/assets/ip-active.png", ":images/assets/ip-not_active.png");
     InputItem *ip2 = new InputItem(":images/assets/ip-active.png", ":images/assets/ip-not_active.png");
     OutputItem *op = new OutputItem(":images/assets/op-active.png", ":images/assets/op-not_active.png");
@@ -48,6 +48,8 @@ NewProject::NewProject(QWidget *parent)
     canvas->addComponent(ip2);
     canvas->addComponent(op);
     canvas->repositionItems();
+*/
+
 }
 
 void NewProject::closeEvent(QCloseEvent *event){

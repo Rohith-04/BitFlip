@@ -16,9 +16,10 @@ public:
         Component *endComponent;
         QPointF startPosition;
         QPointF endPosition;
+        bool state;
     };
+    static std::vector<Connection *> listOfConnections;
 
-    static QVector<Connection *> listOfConnections;
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     void addPoint(const QPointF &point);
     void setColor(const QColor &color);
@@ -29,7 +30,7 @@ public:
     bool getState();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    ConnectionData m_connectionData;
+    ConnectionData m_connectionData; //Instance of the struct
     //void logicHandling();
 
 private:
