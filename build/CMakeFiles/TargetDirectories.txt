@@ -1,9 +1,0 @@
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/BitFlip.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/edit_cache.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/rebuild_cache.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/list_install_components.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/install.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/install/local.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/install/strip.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/BitFlip_autogen_timestamp_deps.dir
-/home/tensa/Desktop/BitFlip/build/CMakeFiles/BitFlip_autogen.dir

@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         connection.h
         mainwindow.h
         assets.qrc
+        gate.h gate.cpp
     )
     qt_finalize_executable(BitFlip)
 else()
