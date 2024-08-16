@@ -23,29 +23,16 @@ public:
     void setView(QGraphicsView *view);
     void repositionItems();
 
-protected:
+private:
+
     void wheelEvent(QGraphicsSceneWheelEvent *event) override;
-    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
-private:
-
-
     QGraphicsView *view;
     QList<InputItem *> inputItems;
     QList<OutputItem *> outputItems;
-
-    Connection* currentConnection;
-    bool isDrawingConnection;
-    QPointF lastPoint;
-
-    std::pair<QPointF, Component *> getNearestConnectionPoint(const QPointF &scenePos);
-    Component *m_startComponent;
-    Component *m_endComponent;
-
-    Qt::Orientation lastDirection;
 
 };
 

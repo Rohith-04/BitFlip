@@ -1,0 +1,9 @@
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/BitFlip.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/edit_cache.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/list_install_components.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/local.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/install/strip.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/BitFlip_autogen_timestamp_deps.dir
+/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/BitFlip_autogen.dir

@@ -6,7 +6,7 @@
 int OutputItem::count = 0;
 
 OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-    : Component(OUTPUT, parent), m_active(false), m_id(count++)
+    : Component(parent), m_active(false), m_id(count++)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
@@ -47,7 +47,6 @@ void OutputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 
 
 void OutputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    // Handle mouse release if needed
     Component::mouseReleaseEvent(event);
 }
 
@@ -58,10 +57,6 @@ QList<QPointF> OutputItem::getConnectionPoints() {
     points << t_point;
     m_outputData.connectionPoint = t_point;
     return points;
-}
-
-OutputItem::OutputItemData OutputItem::getOutputItemData() const {
-    return m_outputData;
 }
 
 void OutputItem::handleLogic() {

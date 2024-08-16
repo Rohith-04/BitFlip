@@ -6,14 +6,7 @@
 #include <QGraphicsScene>
 #include <utility>
 
-int AndGate::count = 0;
-
-AndGate::AndGate(QGraphicsItem *parent)
-    : Component(AND, parent)
-{
-    state = false;
-    input1 = false;
-    input2 = false;
+AndGate::AndGate(QGraphicsItem *parent) : Gate(parent) {
 
     QString resourcePath = ":/images/assets/and_gate.png";
     m_pixmap = QPixmap(resourcePath);
@@ -29,15 +22,7 @@ AndGate::AndGate(QGraphicsItem *parent)
         qDebug() << "Successfully loaded" << resourcePath;
     }
     m_andGateData.position = QVector2D(pos().x(), pos().y());
-    m_andGateData.id = m_id;
 
-    count++;
-
-    //listOfAndComponents.append(this);
-}
-
-QRectF AndGate::boundingRect() const {
-    return QRectF(0, 0, m_pixmap.width(), m_pixmap.height());
 }
 
 void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -51,9 +36,7 @@ void AndGate::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         //Handles Movement
         Component::mouseMoveEvent(event);
         m_andGateData.position = QVector2D(pos().x(), pos().y());
-        //qDebug() << m_andGateData.id;
         //qDebug() << "Item moved to position:" << m_andGateData.position;
-        //qDebug() << getType();
     }
 }
 
@@ -77,10 +60,6 @@ QList<QPointF> AndGate::getConnectionPoints() {
     points << QPointF(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5f);
 
     return points;
-}
-
-bool AndGate::getState(){
-    return state;
 }
 
 void AndGate::handleLogic() {

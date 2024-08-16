@@ -11,8 +11,6 @@ public:
     struct InputItemData {
         QVector2D position;
         int id;
-        QPointF connectionPoint;
-        QString name;
     };   
     InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
 
@@ -20,7 +18,6 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     bool getState();
     QList<QPointF> getConnectionPoints() override;
-    InputItemData getInputItemData() const;
 
     void handleLogic() override {} //Input dont need to handle any logic it is implemented in mousePressEvent
 
@@ -28,7 +25,6 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
     QPixmap m_activePixmap;

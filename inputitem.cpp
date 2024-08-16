@@ -6,7 +6,7 @@
 int InputItem::count = 0;
 
 InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-    : Component(INPUT, parent), m_active(false), m_id(count++)
+    : Component(parent), m_active(false), m_id(count++)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
@@ -85,10 +85,6 @@ QList<QPointF> InputItem::getConnectionPoints() {
     }
 
     return points;
-}
-
-InputItem::InputItemData InputItem::getInputItemData() const {
-    return m_inputData;
 }
 
 bool InputItem::getState(){

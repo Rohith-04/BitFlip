@@ -17,14 +17,6 @@ void Canvas::addComponent(QGraphicsItem *comp) {
     }
 
     addItem(comp);
-
-    if (InputItem *inputItem = dynamic_cast<InputItem*>(comp)) {
-        inputItems.append(inputItem);
-    } else if (OutputItem *outputItem = dynamic_cast<OutputItem*>(comp)) {
-        outputItems.append(outputItem);
-    }
-
-    repositionItems();
 }
 
 void Canvas::addComponent(QGraphicsLineItem *line) {
@@ -119,155 +111,14 @@ void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
 
     // Apply zoom
     view->scale(scaleFactor, scaleFactor);
-    repositionItems();
 
     // Reset the transformation anchor
     //view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 }
 
-/*
-void Canvas::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        if (view) {
-            view->resetTransform();
-            qDebug() << "Reset Zoom";
-        } else {
-            QGraphicsScene::mouseDoubleClickEvent(event);
-        }
-    }
-}
-*/
 
-void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::RightButton) {
-        qDebug() << "Starting the drawing";
-        auto result = getNearestConnectionPoint(event->scenePos());
-        QPointF connectionPoint = result.first;
-        Component *component = result.second;
-        if (component) {
-            isDrawingConnection = true;
-            currentConnection = new Connection();
-            addItem(currentConnection);
-            lastPoint = connectionPoint;
-            currentConnection->addPoint(lastPoint);
-            m_startComponent = component;
-            lastDirection = Qt::Horizontal;  // Initialize with a default direction
-            currentConnection->m_connectionData.startPosition = result.first; // Finalising the first connection point
-        }
-    }
-    QGraphicsScene::mousePressEvent(event);
-}
 
-void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (isDrawingConnection && currentConnection) {
-        QPointF newPoint = event->scenePos();
-        QPointF adjustedPoint;
 
-        // Determine the dominant direction (horizontal or vertical)
-        qreal dx = qAbs(newPoint.x() - lastPoint.x());
-        qreal dy = qAbs(newPoint.y() - lastPoint.y());
 
-        if (dx > dy) {
-            // Draw horizontally
-            adjustedPoint = QPointF(newPoint.x(), lastPoint.y());
-        } else {
-            // Draw vertically
-            adjustedPoint = QPointF(lastPoint.x(), newPoint.y());
-        }
 
-        // Only add the point if it's sufficiently far from the last point
-        if (QLineF(lastPoint, adjustedPoint).length() > 30.0) {
-            currentConnection->addPoint(adjustedPoint);
-            lastPoint = adjustedPoint;
-            update();  // Ensure the scene is updated
-        }
-        event->accept();
-    } else {
-        QGraphicsScene::mouseMoveEvent(event);
-    }
-}
-
-void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::RightButton && isDrawingConnection) {
-        qDebug() << "Finished Drawing";
-        auto result = getNearestConnectionPoint(event->scenePos());
-        QPointF endPoint = result.first;
-        m_endComponent = result.second;
-
-        if (m_endComponent && m_endComponent != m_startComponent) {
-            // Add the final segment based on the last direction
-            qreal dx = qAbs(endPoint.x() - lastPoint.x());
-            qreal dy = qAbs(endPoint.y() - lastPoint.y());
-
-            if (dx > dy) {
-                // Finish with a horizontal line
-                currentConnection->addPoint(QPointF(endPoint.x(), lastPoint.y()));
-            } else {
-                // Finish with a vertical line
-                currentConnection->addPoint(QPointF(lastPoint.x(), endPoint.y()));
-            }
-            currentConnection->addPoint(endPoint);
-
-            // Set the connection as active once completed
-            currentConnection->setActive(true);
-        }
-        else {
-            // Remove the incomplete connection if it doesn't end at a valid component
-            removeItem(currentConnection);
-            delete currentConnection;
-        }
-        if(currentConnection){
-        currentConnection->m_connectionData.startComponent = m_startComponent; // Storing the start component
-        currentConnection->m_connectionData.endComponent = m_endComponent; // Storing the end component
-        currentConnection->m_connectionData.endPosition = result.first; //Finalising last connection position
-        }
-
-        //qDebug() << currentConnection->m_connectionData.startComponent->getType();
-        //qDebug() << currentConnection->m_connectionData.endComponent->getType();
-        //Resetting the things
-        isDrawingConnection = false;
-        currentConnection = nullptr;
-        m_startComponent = nullptr;
-        m_endComponent = nullptr;
-        update();
-    }
-    QGraphicsScene::mouseReleaseEvent(event);
-}
-
-std::pair<QPointF, Component*> Canvas::getNearestConnectionPoint(const QPointF &scenePos) {
-    const qreal MAX_DISTANCE = 40.0;  // Temporarily increased for testing
-    QPointF nearest;
-    Component *nearComponent = nullptr;
-    qreal minDistance = std::numeric_limits<qreal>::max();
-
-    //qDebug() << "Scene position:" << scenePos;
-    //qDebug() << "Number of items in scene:" << items().count();
-
-    for (QGraphicsItem *item : items()) {
-        //qDebug() << "Checking item type:" << item->type();
-
-        Component *component = dynamic_cast<Component*>(item);
-        if (component) {
-            //qDebug() << "  Found component:" << component;
-            QList<QPointF> connectionPoints = component->getConnectionPoints();
-            //qDebug() << "  Number of connection points:" << connectionPoints.size();
-
-            for (const QPointF &point : connectionPoints) {
-                QPointF scenePoint = component->mapToScene(point);
-                qreal distance = QLineF(scenePos, scenePoint).length();
-                //qDebug() << "    Connection point:" << scenePoint << "Distance:" << distance;
-
-                if (distance < minDistance && distance < MAX_DISTANCE) {
-                    minDistance = distance;
-                    nearest = scenePoint;
-                    nearComponent = component;
-                }
-            }
-        } else {
-            //qDebug() << "  Item is not a Component";
-        }
-    }
-
-    return std::make_pair(nearest, nearComponent);
-}
 

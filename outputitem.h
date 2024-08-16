@@ -12,7 +12,6 @@ public:
     struct OutputItemData {
         QVector2D position;
         int id;
-        QPointF connectionPoint;
     };
 
     OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
@@ -21,12 +20,10 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     void toggleState();
     QList<QPointF> getConnectionPoints() override;
-    OutputItemData getOutputItemData() const;
 
     void handleLogic() override;
 
 protected:
-    // Uncomment and implement if mouse press events are needed
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
@@ -37,7 +34,7 @@ private:
     int m_id; // Unique identifier for each output item
     static int count; // Static counter to generate unique IDs
 
-    OutputItemData m_outputData; // Store instance-specific data
+    OutputItemData m_outputData; // Instance of the struct
 };
 
 #endif // OUTPUTITEM_H
