@@ -8,7 +8,7 @@ NewProject::NewProject(QWidget *parent)
     ui->setupUi(this);
     showMaximized();
     canvas = new Canvas(this);
-    canvas->setBackgroundBrush(QColor(71,73,77,255));
+    canvas->setBackgroundBrush(QColor(255,255,255,255));
     view = new QGraphicsView(canvas, this);
     view->setRenderHint(QPainter::Antialiasing);
     view->setRenderHint(QPainter::SmoothPixmapTransform);

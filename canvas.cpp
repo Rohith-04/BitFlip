@@ -5,10 +5,7 @@
 #include <utility>
 #include <limits>
 
-Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr), isDrawingConnection(false), currentConnection(nullptr) {
-    m_startComponent = nullptr;
-    m_endComponent = nullptr;
-}
+Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr){}
 
 void Canvas::addComponent(QGraphicsItem *comp) {
     if (!comp) {

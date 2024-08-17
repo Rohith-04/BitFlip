@@ -38,7 +38,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="QIcon::ThemeIcon::Computer"/>
+   <iconset resource="assets.qrc">
+    <normaloff>:/images/assets/mini-logo.svg</normaloff>:/images/assets/mini-logo.svg</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -99,6 +100,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

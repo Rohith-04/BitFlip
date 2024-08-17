@@ -60,10 +60,8 @@ void InputItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
         // Update the position of the connection points
         m_inputData.position = QVector2D(pos().x(), pos().y());
-        m_inputData.connectionPoint = getConnectionPoints().first();
 
         qDebug() << "Item moved to position:" << m_inputData.position;
-        qDebug() << "Connection point updated to:" << m_inputData.connectionPoint;
     }
 }
 
@@ -78,7 +76,6 @@ QList<QPointF> InputItem::getConnectionPoints() {
 
     QPointF t_point(bounds.right() - 1.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
-    m_inputData.connectionPoint = t_point;
 
     for (const auto &point : points) {
         qDebug() << "Connection point:" << point;

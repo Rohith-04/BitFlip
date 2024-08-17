@@ -26,9 +26,9 @@ public:
 private:
 
     void wheelEvent(QGraphicsSceneWheelEvent *event) override;
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    //void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    //void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
     QGraphicsView *view;
     QList<InputItem *> inputItems;

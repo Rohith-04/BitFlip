@@ -8,7 +8,7 @@
 
 AndGate::AndGate(QGraphicsItem *parent) : Gate(parent) {
 
-    QString resourcePath = ":/images/assets/and_gate.png";
+    QString resourcePath = ":/images/assets/and_gate.svg";
     m_pixmap = QPixmap(resourcePath);
 
     if (!QFile::exists(resourcePath)) {
@@ -21,8 +21,6 @@ AndGate::AndGate(QGraphicsItem *parent) : Gate(parent) {
     else {
         qDebug() << "Successfully loaded" << resourcePath;
     }
-    m_andGateData.position = QVector2D(pos().x(), pos().y());
-
 }
 
 void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -31,37 +29,7 @@ void AndGate::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->drawPixmap(0, 0, m_pixmap);
 }
 
-void AndGate::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if(event->buttons() & Qt::LeftButton){
-        //Handles Movement
-        Component::mouseMoveEvent(event);
-        m_andGateData.position = QVector2D(pos().x(), pos().y());
-        //qDebug() << "Item moved to position:" << m_andGateData.position;
-    }
-}
-
-void AndGate::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-    if(event->button() == Qt::LeftButton){
-    qDebug() << "Removing And Gate";
-    if(scene()){
-            scene()->removeItem(this);
-    }
-    delete this;
-    }
-}
-
-
-QList<QPointF> AndGate::getConnectionPoints() {
-    QList<QPointF> points;
-    QRectF bounds = boundingRect();
-
-    points << QPointF(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.25f);
-    points << QPointF(static_cast<float>(bounds.left()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.75f);
-    points << QPointF(static_cast<float>(bounds.right()), static_cast<float>(bounds.top()) + static_cast<float>(bounds.height()) * 0.5f);
-
-    return points;
-}
-
+/*
 void AndGate::handleLogic() {
     Connection *connection = nullptr;
 
@@ -100,4 +68,4 @@ void AndGate::handleLogic() {
         }
     }
 }
-
+*/

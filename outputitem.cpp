@@ -40,22 +40,16 @@ void OutputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         m_active = !m_active;
         update(); // Redraw the item
-        qDebug() << getType();
-    }
     Component::mousePressEvent(event);
+    }
 }
 
-
-void OutputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    Component::mouseReleaseEvent(event);
-}
 
 QList<QPointF> OutputItem::getConnectionPoints() {
     QRectF bounds = boundingRect();
     QList<QPointF> points;
     QPointF t_point(bounds.left() + 3.5, bounds.top() + bounds.height() * 0.5);
     points << t_point;
-    m_outputData.connectionPoint = t_point;
     return points;
 }
 
@@ -69,3 +63,4 @@ void OutputItem::handleLogic() {
         }
     }
 }
+
