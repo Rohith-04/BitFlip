@@ -1,5 +1,5 @@
 #include "inputitem.h"
-#include "connection.h"
+#include "wire.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -43,10 +43,10 @@ void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
         state = !state;
 
         //Update the wire it is connected to
-        for (Connection *connection : Connection::listOfConnections) {
-            if (connection->m_connectionData.startComponent == this) {
-                connection->setState(m_active);
-                connection->m_connectionData.state = m_active; //update it also in its corresponding struct so that it can be accessed later in the logic evaluation
+        for (Wire *wire : Wire::listOfWires) {
+            if (wire->m_wireData.startComponent == this) {
+                wire->setState(m_active);
+                wire->m_wireData.state = m_active; //update it also in its corresponding struct so that it can be accessed later in the logic evaluation
             }
         }
     }
@@ -58,10 +58,8 @@ void InputItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         // Handle movement
         Component::mouseMoveEvent(event);
 
-        // Update the position of the connection points
+        // Update the position of the wire points
         m_inputData.position = QVector2D(pos().x(), pos().y());
-
-        qDebug() << "Item moved to position:" << m_inputData.position;
     }
 }
 
@@ -78,7 +76,7 @@ QList<QPointF> InputItem::getConnectionPoints() {
     points << t_point;
 
     for (const auto &point : points) {
-        qDebug() << "Connection point:" << point;
+        qDebug() << "Wire point:" << point;
     }
 
     return points;

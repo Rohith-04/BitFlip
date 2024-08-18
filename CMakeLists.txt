@@ -24,7 +24,7 @@ set(PROJECT_SOURCES
     main.cpp
     mainwindow.cpp
     newproject.cpp
-    connection.cpp
+    wire.cpp
     canvas.cpp
     component.cpp
     andgate.cpp
@@ -43,10 +43,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         inputitem.h
         newproject.h
         outputitem.h
-        connection.h
+        wire.h
         mainwindow.h
         assets.qrc
         gate.h gate.cpp
+        connectionpoint.h connectionpoint.cpp
     )
     qt_finalize_executable(BitFlip)
 else()

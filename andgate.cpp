@@ -1,5 +1,5 @@
 #include "andgate.h"
-#include "connection.h"
+#include "wire.h"
 #include <QPainter>
 #include <QFile>
 #include <QDebug>

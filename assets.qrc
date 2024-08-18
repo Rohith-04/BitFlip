@@ -14,5 +14,7 @@
         <file>assets/and_gate.svg</file>
         <file>assets/ip-not_active.svg</file>
         <file>assets/mini-logo.svg</file>
+        <file>assets/still_image.png</file>
+        <file>assets/logo.gif</file>
     </qresource>
 </RCC>

@@ -383,9 +383,9 @@
 			null
 		],
 		[
-			"/home/tensa/Desktop/BitFlip/connection.h",
+			"/home/tensa/Desktop/BitFlip/connectionpoint.h",
 			"MU",
-			"EWIEGA46WW/moc_connection.cpp",
+			"EWIEGA46WW/moc_connectionpoint.cpp",
 			null
 		],
 		[
@@ -416,6 +416,12 @@
 			"/home/tensa/Desktop/BitFlip/outputitem.h",
 			"MU",
 			"EWIEGA46WW/moc_outputitem.cpp",
+			null
+		],
+		[
+			"/home/tensa/Desktop/BitFlip/wire.h",
+			"MU",
+			"EWIEGA46WW/moc_wire.cpp",
 			null
 		]
 	],
@@ -481,13 +487,14 @@
 		[ "/home/tensa/Desktop/BitFlip/andgate.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/canvas.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/component.cpp", "MU", null ],
-		[ "/home/tensa/Desktop/BitFlip/connection.cpp", "MU", null ],
+		[ "/home/tensa/Desktop/BitFlip/connectionpoint.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/gate.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/inputitem.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/main.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/mainwindow.cpp", "MU", null ],
 		[ "/home/tensa/Desktop/BitFlip/newproject.cpp", "MU", null ],
-		[ "/home/tensa/Desktop/BitFlip/outputitem.cpp", "MU", null ]
+		[ "/home/tensa/Desktop/BitFlip/outputitem.cpp", "MU", null ],
+		[ "/home/tensa/Desktop/BitFlip/wire.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

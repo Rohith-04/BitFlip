@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <QMovie>
 #include "newproject.h"
 
 //Forward declaration of New Project
@@ -18,6 +20,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
 private slots:
 
@@ -26,5 +29,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     NewProject *ptr_newProject;
+    QLabel *imageLabel;
+    QPixmap staticImage;
+    QMovie *gifMovie;
 };
 #endif // MAINWINDOW_H

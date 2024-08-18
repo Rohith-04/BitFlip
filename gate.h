@@ -3,14 +3,17 @@
 
 #include "component.h"
 #include "canvas.h"
+#include "connectionpoint.h"
 
 class Gate : public Component {
 public:
     explicit Gate(QGraphicsItem *parent = nullptr);
+    void initConnectionPoints(); //Initialises Connection Points and will be calling this when the button is pressed in the newproject class
 
 protected:
     QRectF boundingRect() const override;
     QList<QPointF> getConnectionPoints() override;
+    void updateConnectionPoints(); //Updates the connection points when the gate is moving
     void handleLogic() override{}
 
     //Mouse Handling Functions
@@ -34,6 +37,11 @@ protected:
     bool output;
     bool firstInput;
     bool secondInput;
+
+//ConnectionPoints Attributs
+    ConnectionPoint *input1;
+    ConnectionPoint *input2;
+    ConnectionPoint *outputPoint; //there is already a output member so a workaround
 };
 
 #endif // GATE_H

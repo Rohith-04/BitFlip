@@ -42,13 +42,17 @@
     <normaloff>:/images/assets/mini-logo.svg</normaloff>:/images/assets/mini-logo.svg</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color : rgb(65, 57, 57)
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QGraphicsView" name="graphicsView"/>
-    </item>
     <item>
      <widget class="QPushButton" name="btn_newProject">
       <property name="sizePolicy">
@@ -57,10 +61,16 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton{
-	background-color : rgb(255, 120, 0);
+	background-color : rgb(226, 217, 24);
 	color : rgb(255, 255, 255);
+	font-size : 24;
 	padding : 5px;
 }
 	</string>
@@ -78,6 +88,20 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color : rgb(226, 217, 24);
+	color : rgb(255, 255, 255);
+	font-size : 24;
+	padding : 5px;
+}
+	</string>
+      </property>
       <property name="text">
        <string>Open Existing Project</string>
       </property>
@@ -90,6 +114,20 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	background-color : rgb(226, 217, 24);
+	color : rgb(255, 255, 255);
+	font-size : 24;
+	padding : 5px;
+}
+	</string>
       </property>
       <property name="text">
        <string>About</string>

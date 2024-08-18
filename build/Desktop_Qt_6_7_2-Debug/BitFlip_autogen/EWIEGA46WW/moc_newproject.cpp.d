@@ -3,10 +3,11 @@
   /home/tensa/Desktop/BitFlip/andgate.h \
   /home/tensa/Desktop/BitFlip/canvas.h \
   /home/tensa/Desktop/BitFlip/component.h \
-  /home/tensa/Desktop/BitFlip/connection.h \
+  /home/tensa/Desktop/BitFlip/connectionpoint.h \
   /home/tensa/Desktop/BitFlip/gate.h \
   /home/tensa/Desktop/BitFlip/inputitem.h \
   /home/tensa/Desktop/BitFlip/outputitem.h \
+  /home/tensa/Desktop/BitFlip/wire.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \
@@ -127,6 +128,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qxptype_traits.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qyieldcpu.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPainterPath \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPen \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPixmap \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QVector2D \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qaction.h \
@@ -158,6 +160,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtransform.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qvectornd.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsEllipseItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsLineItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsPathItem \

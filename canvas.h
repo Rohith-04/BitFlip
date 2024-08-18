@@ -7,7 +7,7 @@
 #include <QGraphicsView>
 #include "inputitem.h"
 #include "outputitem.h"
-#include "connection.h"
+#include "wire.h"
 
 class Component;
 class InputItem;
@@ -21,7 +21,6 @@ public:
     void addComponent(QGraphicsItem *comp);
     void addComponent(QGraphicsLineItem *line);
     void setView(QGraphicsView *view);
-    void repositionItems();
 
 private:
 

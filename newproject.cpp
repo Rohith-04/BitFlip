@@ -17,9 +17,9 @@ NewProject::NewProject(QWidget *parent)
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     canvas->setView(view);
 
-    btnAddInput = new QPushButton("Add Input", this);
-    btnAddAndGate = new QPushButton("Add AND Gate", this);
-    btnAddOutput = new QPushButton("Add Output", this);
+    btnAddInput = new QPushButton("Input", this);
+    btnAddAndGate = new QPushButton("AND", this);
+    btnAddOutput = new QPushButton("Output", this);
 
     connect(btnAddAndGate, &QPushButton::clicked, this, &NewProject::on_btn_andgate_clicked);
     connect(btnAddInput, &QPushButton::clicked, this, &NewProject::on_btn_addInput_clicked);
@@ -69,6 +69,7 @@ void NewProject::on_btn_andgate_clicked() {
     andGate->setFlag(QGraphicsItem::ItemIsSelectable);
     canvas->addComponent(andGate);
     andGate->setPos(100, 100);
+    andGate->initConnectionPoints();
 }
 
 void NewProject::on_btn_addInput_clicked() {

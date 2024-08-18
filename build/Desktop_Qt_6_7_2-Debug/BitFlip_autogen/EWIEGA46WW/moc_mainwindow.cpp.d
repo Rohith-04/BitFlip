@@ -3,12 +3,14 @@
   /home/tensa/Desktop/BitFlip/andgate.h \
   /home/tensa/Desktop/BitFlip/canvas.h \
   /home/tensa/Desktop/BitFlip/component.h \
-  /home/tensa/Desktop/BitFlip/connection.h \
+  /home/tensa/Desktop/BitFlip/connectionpoint.h \
   /home/tensa/Desktop/BitFlip/gate.h \
   /home/tensa/Desktop/BitFlip/inputitem.h \
   /home/tensa/Desktop/BitFlip/newproject.h \
   /home/tensa/Desktop/BitFlip/outputitem.h \
+  /home/tensa/Desktop/BitFlip/wire.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20algorithm.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20type_traits.h \
@@ -27,6 +29,9 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qbytearraylist.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qbytearrayview.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcalendar.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcborcommon.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcborvalue.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qchar.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcompare.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcompare_impl.h \
@@ -38,12 +43,19 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcontainerinfo.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcontainertools_impl.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcontiguouscache.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcoreapplication.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcoreapplication_platform.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qcoreevent.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qdarwinhelpers.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qdatastream.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qdatetime.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qdeadlinetimer.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qdebug.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qelapsedtimer.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qendian.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qeventloop.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qexceptionhandling.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qfactoryinterface.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qflags.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qfloat16.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qforeach.h \
@@ -54,12 +66,16 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qglobalstatic.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qhash.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qhashfunctions.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qiodevice.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qiodevicebase.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qiterable.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qiterator.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qjsonobject.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qjsonvalue.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qlatin1stringview.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qline.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qlist.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qlocale.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qlogging.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qmalloc.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qmap.h \
@@ -69,6 +85,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qmetatype.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qminmax.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qnamespace.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qnativeinterface.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qnumeric.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qobject.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qobject_impl.h \
@@ -76,10 +93,13 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qoverload.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qpair.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qplugin.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qpoint.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qpointer.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qprocessordetection.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qrect.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qrefcount.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qregularexpression.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qscopedpointer.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qscopeguard.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qset.h \
@@ -121,13 +141,17 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qtversionchecks.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qtypeinfo.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qtypes.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qurl.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qutf8stringview.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/quuid.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qvariant.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qvarlengtharray.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qversiontagging.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qxptype_traits.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/qyieldcpu.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QMovie \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPainterPath \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPen \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QPixmap \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/QVector2D \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qaction.h \
@@ -140,18 +164,23 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qfontmetrics.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qicon.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qimage.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qimageiohandler.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qimagereader.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qkeysequence.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qmovie.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpaintdevice.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpainter.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpainterpath.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpalette.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpen.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpicture.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpixelformat.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpixmap.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qpolygon.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qregion.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qrgb.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qrgba64.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtextdocument.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtextoption.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtgui-config.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtguiexports.h \
@@ -159,6 +188,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qtransform.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qvectornd.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsEllipseItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsLineItem \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsPathItem \
@@ -166,6 +196,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsSceneMouseEvent \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QGraphicsView \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QHBoxLayout \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QLabel \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QMainWindow \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QPushButton \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/QVBoxLayout \
@@ -179,6 +210,7 @@
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qgraphicsview.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qgridlayout.h \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qlabel.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qlayout.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qlayoutitem.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets/qmainwindow.h \

@@ -1,5 +1,5 @@
 #include "outputitem.h"
-#include "connection.h"
+#include "wire.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -40,10 +40,9 @@ void OutputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         m_active = !m_active;
         update(); // Redraw the item
-    Component::mousePressEvent(event);
+        Component::mousePressEvent(event);
     }
 }
-
 
 QList<QPointF> OutputItem::getConnectionPoints() {
     QRectF bounds = boundingRect();
@@ -54,12 +53,12 @@ QList<QPointF> OutputItem::getConnectionPoints() {
 }
 
 void OutputItem::handleLogic() {
-    // Find the connection this OutputItem is connected to
-    for (Connection *connection : Connection::listOfConnections) {
-        if (connection->m_connectionData.endComponent == this) {
-            m_active = connection->getState();
+    // Find the wire this OutputItem is connected to
+    for (Wire *wire : Wire::listOfWires) {
+        if (wire->m_wireData.endComponent == this) {
+            m_active = wire->getState();
             update();
-            break; //since the outputs have only one connection
+            break; //since the outputs have only one wire
         }
     }
 }

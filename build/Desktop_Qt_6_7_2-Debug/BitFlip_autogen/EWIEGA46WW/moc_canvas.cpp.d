@@ -1,9 +1,9 @@
 /home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/EWIEGA46WW/moc_canvas.cpp: /home/tensa/Desktop/BitFlip/canvas.h \
   /home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/moc_predefs.h \
   /home/tensa/Desktop/BitFlip/component.h \
-  /home/tensa/Desktop/BitFlip/connection.h \
   /home/tensa/Desktop/BitFlip/inputitem.h \
   /home/tensa/Desktop/BitFlip/outputitem.h \
+  /home/tensa/Desktop/BitFlip/wire.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \

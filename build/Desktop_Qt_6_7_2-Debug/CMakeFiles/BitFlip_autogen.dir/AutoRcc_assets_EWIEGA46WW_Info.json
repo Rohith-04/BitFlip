@@ -10,6 +10,7 @@
 	"INPUTS" : 
 	[
 		"/home/tensa/Desktop/BitFlip/assets/ip-not_active.png",
+		"/home/tensa/Desktop/BitFlip/assets/still_image.png",
 		"/home/tensa/Desktop/BitFlip/assets/op-active.png",
 		"/home/tensa/Desktop/BitFlip/assets/op-not_active.png",
 		"/home/tensa/Desktop/BitFlip/assets/and_gate.png",
@@ -17,6 +18,7 @@
 		"/home/tensa/Desktop/BitFlip/assets/mini-logo.svg",
 		"/home/tensa/Desktop/BitFlip/assets/nand_gate.png",
 		"/home/tensa/Desktop/BitFlip/assets/xnor_gate.png",
+		"/home/tensa/Desktop/BitFlip/assets/logo.gif",
 		"/home/tensa/Desktop/BitFlip/assets/not_gate.png",
 		"/home/tensa/Desktop/BitFlip/assets/ip-active.png",
 		"/home/tensa/Desktop/BitFlip/assets/nor_gate.png",

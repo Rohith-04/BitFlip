@@ -81,9 +81,9 @@ build CMakeFiles/BitFlip.dir/newproject.cpp.o: CXX_COMPILER__BitFlip_unscanned_D
   OBJECT_DIR = CMakeFiles/BitFlip.dir
   OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
 
-build CMakeFiles/BitFlip.dir/connection.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/tensa/Desktop/BitFlip/connection.cpp || cmake_object_order_depends_target_BitFlip
+build CMakeFiles/BitFlip.dir/wire.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/tensa/Desktop/BitFlip/wire.cpp || cmake_object_order_depends_target_BitFlip
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/BitFlip.dir/connection.cpp.o.d
+  DEP_FILE = CMakeFiles/BitFlip.dir/wire.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -g -std=gnu++17 -fdiagnostics-color=always -fPIC
   INCLUDES = -I/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/include -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtCore -isystem /home/tensa/Qt/6.7.2/gcc_64/include -isystem /home/tensa/Qt/6.7.2/gcc_64/mkspecs/linux-g++ -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtGui
   OBJECT_DIR = CMakeFiles/BitFlip.dir
@@ -137,6 +137,14 @@ build CMakeFiles/BitFlip.dir/gate.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /
   OBJECT_DIR = CMakeFiles/BitFlip.dir
   OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
 
+build CMakeFiles/BitFlip.dir/connectionpoint.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/tensa/Desktop/BitFlip/connectionpoint.cpp || cmake_object_order_depends_target_BitFlip
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/BitFlip.dir/connectionpoint.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -g -std=gnu++17 -fdiagnostics-color=always -fPIC
+  INCLUDES = -I/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/include -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtCore -isystem /home/tensa/Qt/6.7.2/gcc_64/include -isystem /home/tensa/Qt/6.7.2/gcc_64/mkspecs/linux-g++ -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtWidgets -isystem /home/tensa/Qt/6.7.2/gcc_64/include/QtGui
+  OBJECT_DIR = CMakeFiles/BitFlip.dir
+  OBJECT_FILE_DIR = CMakeFiles/BitFlip.dir
+
 build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_COMPILER__BitFlip_unscanned_Debug /home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp || cmake_object_order_depends_target_BitFlip
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o.d
@@ -153,7 +161,7 @@ build CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o: CXX_CO
 #############################################
 # Link the executable BitFlip
 
-build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/connection.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/gate.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2 /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2 /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
+build BitFlip: CXX_EXECUTABLE_LINKER__BitFlip_Debug CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.o CMakeFiles/BitFlip.dir/main.cpp.o CMakeFiles/BitFlip.dir/mainwindow.cpp.o CMakeFiles/BitFlip.dir/newproject.cpp.o CMakeFiles/BitFlip.dir/wire.cpp.o CMakeFiles/BitFlip.dir/canvas.cpp.o CMakeFiles/BitFlip.dir/component.cpp.o CMakeFiles/BitFlip.dir/andgate.cpp.o CMakeFiles/BitFlip.dir/inputitem.cpp.o CMakeFiles/BitFlip.dir/outputitem.cpp.o CMakeFiles/BitFlip.dir/gate.cpp.o CMakeFiles/BitFlip.dir/connectionpoint.cpp.o CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.o | /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2 /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2 /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2 /usr/lib/libGLX.so /usr/lib/libOpenGL.so || BitFlip_autogen BitFlip_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g -g
   LINK_LIBRARIES = -Wl,-rpath,/home/tensa/Qt/6.7.2/gcc_64/lib:  /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Widgets.so.6.7.2  /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Gui.so.6.7.2  /home/tensa/Qt/6.7.2/gcc_64/lib/libQt6Core.so.6.7.2  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   OBJECT_DIR = CMakeFiles/BitFlip.dir
@@ -255,7 +263,7 @@ build BitFlip_autogen/timestamp BitFlip_autogen/mocs_compilation.cpp | ${cmake_n
 #############################################
 # Custom command for BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp
 
-build BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp | ${cmake_ninja_workdir}BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp: CUSTOM_COMMAND /home/tensa/Desktop/BitFlip/assets.qrc CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json /home/tensa/Desktop/BitFlip/assets/ip-not_active.png /home/tensa/Desktop/BitFlip/assets/op-active.png /home/tensa/Desktop/BitFlip/assets/op-not_active.png /home/tensa/Desktop/BitFlip/assets/and_gate.png /home/tensa/Desktop/BitFlip/assets/and_gate.svg /home/tensa/Desktop/BitFlip/assets/mini-logo.svg /home/tensa/Desktop/BitFlip/assets/nand_gate.png /home/tensa/Desktop/BitFlip/assets/xnor_gate.png /home/tensa/Desktop/BitFlip/assets/not_gate.png /home/tensa/Desktop/BitFlip/assets/ip-active.png /home/tensa/Desktop/BitFlip/assets/nor_gate.png /home/tensa/Desktop/BitFlip/assets/ip-not_active.svg /home/tensa/Desktop/BitFlip/assets/or_gate.png /home/tensa/Desktop/BitFlip/assets/xor_gate.png /home/tensa/Qt/6.7.2/gcc_64/./libexec/rcc /home/tensa/Qt/6.7.2/gcc_64/./libexec/rcc || BitFlip_autogen BitFlip_autogen_timestamp_deps
+build BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp | ${cmake_ninja_workdir}BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp: CUSTOM_COMMAND /home/tensa/Desktop/BitFlip/assets.qrc CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json /home/tensa/Desktop/BitFlip/assets/ip-not_active.png /home/tensa/Desktop/BitFlip/assets/still_image.png /home/tensa/Desktop/BitFlip/assets/op-active.png /home/tensa/Desktop/BitFlip/assets/op-not_active.png /home/tensa/Desktop/BitFlip/assets/and_gate.png /home/tensa/Desktop/BitFlip/assets/and_gate.svg /home/tensa/Desktop/BitFlip/assets/mini-logo.svg /home/tensa/Desktop/BitFlip/assets/nand_gate.png /home/tensa/Desktop/BitFlip/assets/xnor_gate.png /home/tensa/Desktop/BitFlip/assets/logo.gif /home/tensa/Desktop/BitFlip/assets/not_gate.png /home/tensa/Desktop/BitFlip/assets/ip-active.png /home/tensa/Desktop/BitFlip/assets/nor_gate.png /home/tensa/Desktop/BitFlip/assets/ip-not_active.svg /home/tensa/Desktop/BitFlip/assets/or_gate.png /home/tensa/Desktop/BitFlip/assets/xor_gate.png /home/tensa/Qt/6.7.2/gcc_64/./libexec/rcc /home/tensa/Qt/6.7.2/gcc_64/./libexec/rcc || BitFlip_autogen BitFlip_autogen_timestamp_deps
   COMMAND = cd /home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug && /home/tensa/Qt/Tools/CMake/bin/cmake -E cmake_autorcc /home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/BitFlip_autogen.dir/AutoRcc_assets_EWIEGA46WW_Info.json Debug
   DESC = Automatic RCC for assets.qrc
   restat = 1

@@ -2,8 +2,30 @@
 
 Gate::Gate(QGraphicsItem *parent) : Component(parent) {
     qDebug() << "Gate const is called";
+    firstInput = false;
+    secondInput = false;
+    output = false;
+    input1 = nullptr;
+    input2 = nullptr;
+    outputPoint = nullptr;
 }
 
+void Gate::initConnectionPoints(){
+    input1 = new ConnectionPoint(this);
+    input2 = new ConnectionPoint(this);
+    outputPoint = new ConnectionPoint(this);
+
+    updateConnectionPoints();
+}
+
+void Gate::updateConnectionPoints(){
+    QList<QPointF> connectionPoints = getConnectionPoints();
+    float r = input1->getRadius();
+
+    input1->setPos(connectionPoints[0].x() - r, connectionPoints[0].y() - r);
+    input2->setPos(connectionPoints[1].x() - r, connectionPoints[1].y() - r);
+    outputPoint->setPos(connectionPoints[2].x() - r, connectionPoints[2].y() - r);
+}
 QRectF Gate::boundingRect() const{
     return QRectF(0 , 0 , m_pixmap.width(), m_pixmap.height());
 }
