@@ -77,6 +77,7 @@ void NewProject::on_btn_addInput_clicked() {
     QString activeImagePath = ":images/assets/ip-active.png";
     QString inactiveImagePath = ":images/assets/ip-not_active.png";
     InputItem *inputItem = new InputItem(activeImagePath, inactiveImagePath);
+    inputItem->initConnectionPoints();
     canvas->addComponent(inputItem);
 }
 
@@ -85,5 +86,6 @@ void NewProject::on_btn_addOutput_clicked() {
     QString activeOpImagePath = ":/images/assets/op-active.png";
     QString inactiveOpImagePath = ":/images/assets/op-not_active.png";
     OutputItem *outputItem = new OutputItem(activeOpImagePath, inactiveOpImagePath);
+    outputItem->initConnectionPoints();
     canvas->addComponent(outputItem);
 }

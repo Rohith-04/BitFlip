@@ -8,12 +8,12 @@
 class Gate : public Component {
 public:
     explicit Gate(QGraphicsItem *parent = nullptr);
-    void initConnectionPoints(); //Initialises Connection Points and will be calling this when the button is pressed in the newproject class
+    void initConnectionPoints() override; //Initialises Connection Points and will be calling this when the button is pressed in the newproject class
 
 protected:
     QRectF boundingRect() const override;
     QList<QPointF> getConnectionPoints() override;
-    void updateConnectionPoints(); //Updates the connection points when the gate is moving
+    void updateConnectionPoints() override; //Updates the connection points when the gate is moving
     void handleLogic() override{}
 
     //Mouse Handling Functions

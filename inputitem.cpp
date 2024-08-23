@@ -19,6 +19,8 @@ InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImag
 
     m_inputData.position = QVector2D(pos().x(), pos().y());
     m_inputData.id = m_id;
+
+    inputTerminal = nullptr;
 }
 
 QRectF InputItem::boundingRect() const {
@@ -84,4 +86,17 @@ QList<QPointF> InputItem::getConnectionPoints() {
 
 bool InputItem::getState(){
     return state;
+}
+
+void InputItem::initConnectionPoints(){
+    inputTerminal = new ConnectionPoint(this);
+
+    updateConnectionPoints();
+}
+
+void InputItem::updateConnectionPoints(){
+    QList<QPointF> connectionPoints = getConnectionPoints();
+    float r = inputTerminal->getRadius();
+
+    inputTerminal->setPos(connectionPoints[0].x() - r, connectionPoints[0].y() - r);
 }

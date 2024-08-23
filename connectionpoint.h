@@ -3,6 +3,8 @@
 
 #include <QGraphicsEllipseItem>
 #include <QPen>
+#include "wire.h"
+//#include "canvas.h"
 
 class ConnectionPoint : public QGraphicsEllipseItem
 {
@@ -11,6 +13,10 @@ public:
 
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
+    Wire* getCurrentWire();
+    void setCurrentWire(Wire *wire);
 
     float getRadius();
     ~ConnectionPoint();
@@ -20,6 +26,8 @@ private:
     QPen pen;
     QColor defaultColor;
     QColor hoverColor;
+
+    Wire *currentWire;
 };
 
 #endif // CONNECTIONPOINT_H

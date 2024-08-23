@@ -18,6 +18,21 @@ OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveIm
 
     m_outputData.position = QVector2D(pos().x(), pos().y());
     m_outputData.id = m_id;
+
+    outputTerminal = nullptr;
+}
+
+void OutputItem::initConnectionPoints(){
+    outputTerminal = new ConnectionPoint(this);
+
+    updateConnectionPoints();
+}
+
+void OutputItem::updateConnectionPoints(){
+    QList<QPointF> connectionPoints = getConnectionPoints();
+
+    float r = outputTerminal->getRadius();
+    outputTerminal->setPos(connectionPoints[0].x() - r, connectionPoints[0].y() - r);
 }
 
 QRectF OutputItem::boundingRect() const {

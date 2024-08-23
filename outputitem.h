@@ -1,6 +1,7 @@
 #ifndef OUTPUTITEM_H
 #define OUTPUTITEM_H
 
+#include "connectionpoint.h"
 #include "component.h"
 #include <QPixmap>
 #include <QVector2D>
@@ -23,6 +24,9 @@ public:
 
     void handleLogic() override;
 
+    void initConnectionPoints() override;
+    void updateConnectionPoints() override;
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
@@ -34,6 +38,8 @@ private:
     static int count; // Static counter to generate unique IDs
 
     OutputItemData m_outputData; // Instance of the struct
+
+    ConnectionPoint *outputTerminal;
 };
 
 #endif // OUTPUTITEM_H

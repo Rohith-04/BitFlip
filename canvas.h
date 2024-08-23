@@ -8,6 +8,7 @@
 #include "inputitem.h"
 #include "outputitem.h"
 #include "wire.h"
+#include "connectionpoint.h"
 
 class Component;
 class InputItem;
@@ -22,6 +23,7 @@ public:
     void addComponent(QGraphicsLineItem *line);
     void setView(QGraphicsView *view);
 
+
 private:
 
     void wheelEvent(QGraphicsSceneWheelEvent *event) override;
@@ -29,10 +31,10 @@ private:
     //void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
-    QGraphicsView *view;
+
     QList<InputItem *> inputItems;
     QList<OutputItem *> outputItems;
-
+    QGraphicsView *view;
 };
 
 #endif // CANVAS_H

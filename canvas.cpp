@@ -69,5 +69,3 @@ void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
 
 
 
-
-

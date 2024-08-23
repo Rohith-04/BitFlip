@@ -85,15 +85,6 @@ void Wire::setState(bool state){
     }
 }
 
-/*
-void Wire::logicHandling(){
-    for(Wire *i : listOfWires){
-        Component *startComp = i->m_wireData.startComponent;
-        Component *endComp = i->m_wireData.endComponent;
-    }
-}
-*/
-
 bool Wire::getState() {
     return isActive;
 }

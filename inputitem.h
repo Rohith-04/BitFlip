@@ -1,10 +1,13 @@
 #ifndef INPUTITEM_H
 #define INPUTITEM_H
 
+#include "connectionpoint.h"
 #include "component.h"
 #include <QPixmap>
 #include <QVector2D>
 #include <QGraphicsSceneMouseEvent>
+//#include "connectionpoint.h"
+
 
 class InputItem : public Component {
 public:
@@ -21,6 +24,10 @@ public:
 
     void handleLogic() override {} //Input dont need to handle any logic it is implemented in mousePressEvent
 
+    //ConnectionPoints related functions
+    void initConnectionPoints()override;
+    void updateConnectionPoints() override;
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
@@ -35,6 +42,8 @@ private:
     static int count; // Static counter to generate unique IDs
 
     InputItemData m_inputData; // Store instance-specific data
+
+    ConnectionPoint *inputTerminal;
 };
 
 #endif // INPUTITEM_H

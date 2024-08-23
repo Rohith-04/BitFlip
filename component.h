@@ -15,6 +15,9 @@ public:
     QVector2D getPosition();
     virtual void handleLogic() = 0;
 
+    //Virtual functions for Connection points
+    virtual void initConnectionPoints() = 0;
+    virtual void updateConnectionPoints() = 0;
     virtual ~Component();
 
 protected:
