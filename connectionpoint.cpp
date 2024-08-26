@@ -21,19 +21,10 @@ ConnectionPoint::ConnectionPoint(QGraphicsItem *parent) : QGraphicsEllipseItem(p
     setAcceptHoverEvents(true);
     qDebug() << "Connection Point is added";
 
-    currentWire = nullptr;
 }
 
 float ConnectionPoint::getRadius(){
     return radius;
-}
-
-Wire* ConnectionPoint::getCurrentWire(){
-    return currentWire;
-}
-
-void ConnectionPoint::setCurrentWire(Wire *wire){
-    currentWire = wire;
 }
 
 void ConnectionPoint::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
@@ -58,19 +49,8 @@ void ConnectionPoint::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
 
 void ConnectionPoint::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if(event->button() == Qt::LeftButton){
-        if(!currentWire){
-            currentWire = new Wire();
-            currentWire->addPoint(scenePos());
-            //view->addItem(currentWire);
-        }
-        else{
-            currentWire->addPoint(scenePos());
-            //currentWire->m_wireData.endComponent = this;
-            currentWire = nullptr;
-        }
+        emit connectionPointClicked(this);
     }
+    QGraphicsEllipseItem::mousePressEvent(event);
 }
 
-ConnectionPoint::~ConnectionPoint(){
-    qDebug() << "ConnectionPoint is deleted";
-}

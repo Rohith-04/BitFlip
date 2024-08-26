@@ -21,13 +21,16 @@ public:
     float getRadius();
     ~ConnectionPoint();
 
+signals:
+    void connectionPointClicked(ConnectionPoint* point);
+
 private:
     float radius;
     QPen pen;
     QColor defaultColor;
     QColor hoverColor;
 
-    Wire *currentWire;
+
 };
 
 #endif // CONNECTIONPOINT_H

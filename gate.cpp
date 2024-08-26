@@ -15,6 +15,9 @@ void Gate::initConnectionPoints(){
     input2 = new ConnectionPoint(this);
     outputPoint = new ConnectionPoint(this);
 
+    QObject::connect(input1, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
+    QObject::connect(input2, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
+    QObject::connect(outputPoint, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
     updateConnectionPoints();
 }
 

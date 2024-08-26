@@ -37,12 +37,14 @@ void Wire::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
     }
 }
 
-void Wire::addPoint(const QPointF &point)
-{
+void Wire::addPoint(const QPointF &point) {
     if (path.elementCount() == 0) {
         path.moveTo(point);
     } else {
-        path.lineTo(point);
+        QPointF lastPoint = path.currentPosition();
+        QPointF control1 = lastPoint + QPointF((point.x() - lastPoint.x()) / 2, 0);
+        QPointF control2 = point - QPointF((point.x() - lastPoint.x()) / 2, 0);
+        path.cubicTo(control1, control2, point);
     }
     setPath(path);
 }
@@ -63,6 +65,14 @@ QRectF Wire::boundingRect() const{
     return path.boundingRect();
 }
 
+void Wire::setStartComponent(Component* component) {
+    m_wireData.startComponent = component;
+}
+
+void Wire::setEndComponent(Component* component) {
+    m_wireData.endComponent = component;
+}
+
 void Wire::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
@@ -79,13 +89,28 @@ void Wire::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
 void Wire::setState(bool state){
     isActive = state;
     update();
-
-    if(m_wireData.endComponent){
-        m_wireData.endComponent->handleLogic();
-    }
 }
 
 bool Wire::getState() {
     return isActive;
 }
 
+void Wire::updateLastPoint(const QPointF& point) {
+    if (path.elementCount() > 0) {
+        path.setElementPositionAt(path.elementCount() - 1, point.x(), point.y());
+        setPath(path);
+    }
+}
+
+void Wire::addNewPoint(const QPointF& point) {
+    if (path.elementCount() == 0) {
+        path.moveTo(point);
+    } else {
+        path.lineTo(point);
+    }
+    setPath(path);
+}
+
+int Wire::pointCount() const {
+    return path.elementCount();
+}

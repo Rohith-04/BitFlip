@@ -23,18 +23,24 @@ public:
     void addComponent(QGraphicsLineItem *line);
     void setView(QGraphicsView *view);
 
+public slots:
+    void handleConnectionPointClick(ConnectionPoint* point);
 
 private:
 
     void wheelEvent(QGraphicsSceneWheelEvent *event) override;
     //void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    //void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
     //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 
     QList<InputItem *> inputItems;
     QList<OutputItem *> outputItems;
     QGraphicsView *view;
+
+    Wire* currentWire;
+    ConnectionPoint* startPoint;
+    bool isDrawingWire;
 };
 
 #endif // CANVAS_H

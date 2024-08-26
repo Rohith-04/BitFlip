@@ -5,7 +5,11 @@
 #include <utility>
 #include <limits>
 
-Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr){}
+Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr){
+    currentWire = nullptr;
+    isDrawingWire = false;
+    startPoint = nullptr;
+}
 
 void Canvas::addComponent(QGraphicsItem *comp) {
     if (!comp) {
@@ -65,7 +69,35 @@ void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
     //view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 }
 
+void Canvas::handleConnectionPointClick(ConnectionPoint* point) {
+    if (!isDrawingWire) {
+        // Start drawing a new wire
+        currentWire = new Wire();
+        addItem(currentWire);
+        currentWire->addNewPoint(point->scenePos());
+        startPoint = point;
+        isDrawingWire = true;
+    } else {
+        // Finish drawing the wire
+        currentWire->addNewPoint(point->scenePos());
+        currentWire->setStartComponent(dynamic_cast<Component*>(startPoint->parentItem()));
+        currentWire->setEndComponent(dynamic_cast<Component*>(point->parentItem()));
+        isDrawingWire = false;
+        currentWire = nullptr;
+        startPoint = nullptr;
+    }
+}
 
-
+void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* event) {
+    if (isDrawingWire && currentWire) {
+        QPointF endPoint = event->scenePos();
+        if (currentWire->pointCount() > 1) {
+            currentWire->updateLastPoint(endPoint);
+        } else {
+            currentWire->addNewPoint(endPoint);
+        }
+    }
+    QGraphicsScene::mouseMoveEvent(event);
+}
 
 

@@ -50,15 +50,6 @@ void OutputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
     }
 }
 
-
-void OutputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        m_active = !m_active;
-        update(); // Redraw the item
-        Component::mousePressEvent(event);
-    }
-}
-
 QList<QPointF> OutputItem::getConnectionPoints() {
     QRectF bounds = boundingRect();
     QList<QPointF> points;

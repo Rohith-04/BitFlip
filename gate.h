@@ -4,6 +4,7 @@
 #include "component.h"
 #include "canvas.h"
 #include "connectionpoint.h"
+#include <QObject>
 
 class Gate : public Component {
 public:
@@ -42,6 +43,9 @@ protected:
     ConnectionPoint *input1;
     ConnectionPoint *input2;
     ConnectionPoint *outputPoint; //there is already a output member so a workaround
+
+//Wire related things
+    Canvas *m_canvas;
 };
 
 #endif // GATE_H

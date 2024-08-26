@@ -9,6 +9,7 @@
   /home/tensa/Desktop/BitFlip/outputitem.h \
   /home/tensa/Desktop/BitFlip/wire.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/QDebug \
+  /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/QObject \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20functional.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20memory.h \
   /home/tensa/Qt/6.7.2/gcc_64/include/QtCore/q20type_traits.h \

@@ -27,9 +27,6 @@ public:
     void initConnectionPoints() override;
     void updateConnectionPoints() override;
 
-protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-
 private:
     QPixmap m_activePixmap;
     QPixmap m_inactivePixmap;
