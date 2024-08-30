@@ -15,7 +15,7 @@ public:
         QVector2D position;
         int id;
     };   
-    InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
+    InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -40,6 +40,7 @@ private:
     bool state;
     int m_id; // Unique identifier for each input item
     static int count; // Static counter to generate unique IDs
+    NewProject *m_project;
 
     InputItemData m_inputData; // Store instance-specific data
 

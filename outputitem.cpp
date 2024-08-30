@@ -5,12 +5,12 @@
 
 int OutputItem::count = 0;
 
-OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-    : Component(parent), m_active(false), m_id(count++)
+OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent, NewProject *project)
+    : Component(parent), m_active(false), m_id(count++),  m_project(project)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
-
+    qDebug() << "Output Item: "<< m_project;
     // Check if pixmaps are loaded
     if (m_activePixmap.isNull() || m_inactivePixmap.isNull()) {
         qDebug() << "Failed to load output images:" << activeImagePath << inactiveImagePath;
@@ -23,7 +23,7 @@ OutputItem::OutputItem(const QString &activeImagePath, const QString &inactiveIm
 }
 
 void OutputItem::initConnectionPoints(){
-    outputTerminal = new ConnectionPoint(this);
+    outputTerminal = new ConnectionPoint(this,m_project);
 
     updateConnectionPoints();
 }

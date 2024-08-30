@@ -65,14 +65,6 @@ QRectF Wire::boundingRect() const{
     return path.boundingRect();
 }
 
-void Wire::setStartComponent(Component* component) {
-    m_wireData.startComponent = component;
-}
-
-void Wire::setEndComponent(Component* component) {
-    m_wireData.endComponent = component;
-}
-
 void Wire::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
@@ -95,22 +87,9 @@ bool Wire::getState() {
     return isActive;
 }
 
-void Wire::updateLastPoint(const QPointF& point) {
-    if (path.elementCount() > 0) {
-        path.setElementPositionAt(path.elementCount() - 1, point.x(), point.y());
-        setPath(path);
-    }
-}
-
-void Wire::addNewPoint(const QPointF& point) {
-    if (path.elementCount() == 0) {
-        path.moveTo(point);
-    } else {
-        path.lineTo(point);
-    }
+void Wire::updatePath(QPointF newPoint){
+    //QPainterPath path = this->path();
+    qDebug() << "Adding new Path";
+    path.lineTo(newPoint);
     setPath(path);
-}
-
-int Wire::pointCount() const {
-    return path.elementCount();
 }

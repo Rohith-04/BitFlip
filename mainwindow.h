@@ -21,6 +21,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     bool eventFilter(QObject *obj, QEvent *event) override;
+    NewProject *ptr_newProject;
 
 private slots:
 
@@ -28,7 +29,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    NewProject *ptr_newProject;
     QLabel *imageLabel;
     QPixmap staticImage;
     QMovie *gifMovie;

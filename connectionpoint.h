@@ -6,23 +6,21 @@
 #include "wire.h"
 //#include "canvas.h"
 
-class ConnectionPoint : public QGraphicsEllipseItem
+class NewProject; //Forward declaration of the new project class
+
+class ConnectionPoint :  public QObject , public QGraphicsEllipseItem
 {
+    Q_OBJECT
 public:
-    explicit ConnectionPoint(QGraphicsItem *parent = nullptr);
+    explicit ConnectionPoint(QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
 
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
-    Wire* getCurrentWire();
-    void setCurrentWire(Wire *wire);
-
     float getRadius();
-    ~ConnectionPoint();
 
 signals:
-    void connectionPointClicked(ConnectionPoint* point);
+    void ConnectionPointClicked();
 
 private:
     float radius;
@@ -30,6 +28,8 @@ private:
     QColor defaultColor;
     QColor hoverColor;
 
+/////////////////////////////////////
+    NewProject *m_project;
 
 };
 

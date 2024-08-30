@@ -1,6 +1,7 @@
 #include "connectionpoint.h"
+#include "newproject.h"
 
-ConnectionPoint::ConnectionPoint(QGraphicsItem *parent) : QGraphicsEllipseItem(parent) {
+ConnectionPoint::ConnectionPoint(QGraphicsItem *parent, NewProject *project) : QGraphicsEllipseItem(parent), m_project(project) {
     radius = 10.00f;
     setRect(0, 0, radius * 2, radius * 2);
 
@@ -20,7 +21,15 @@ ConnectionPoint::ConnectionPoint(QGraphicsItem *parent) : QGraphicsEllipseItem(p
 
     setAcceptHoverEvents(true);
     qDebug() << "Connection Point is added";
-
+    QObject::connect(this,&ConnectionPoint::ConnectionPointClicked, [this](){
+        if(m_project == nullptr)
+            qDebug() << "The project pointer is null";
+        Canvas *canvas = m_project->getCanvas();
+        qDebug() << "connected";
+        if(canvas){
+            canvas->startDrawing();
+        }
+    });
 }
 
 float ConnectionPoint::getRadius(){
@@ -47,10 +56,10 @@ void ConnectionPoint::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
     QGraphicsEllipseItem::hoverLeaveEvent(event);
 }
 
-void ConnectionPoint::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    if(event->button() == Qt::LeftButton){
-        emit connectionPointClicked(this);
-    }
+void ConnectionPoint::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "ConnectionPoint is clicked";
+    emit ConnectionPointClicked();
     QGraphicsEllipseItem::mousePressEvent(event);
 }
 

@@ -7,8 +7,7 @@
 
 Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr){
     currentWire = nullptr;
-    isDrawingWire = false;
-    startPoint = nullptr;
+    isDrawing = false;
 }
 
 void Canvas::addComponent(QGraphicsItem *comp) {
@@ -69,35 +68,21 @@ void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
     //view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 }
 
-void Canvas::handleConnectionPointClick(ConnectionPoint* point) {
-    if (!isDrawingWire) {
-        // Start drawing a new wire
-        currentWire = new Wire();
-        addItem(currentWire);
-        currentWire->addNewPoint(point->scenePos());
-        startPoint = point;
-        isDrawingWire = true;
-    } else {
-        // Finish drawing the wire
-        currentWire->addNewPoint(point->scenePos());
-        currentWire->setStartComponent(dynamic_cast<Component*>(startPoint->parentItem()));
-        currentWire->setEndComponent(dynamic_cast<Component*>(point->parentItem()));
-        isDrawingWire = false;
-        currentWire = nullptr;
-        startPoint = nullptr;
-    }
+void Canvas::startDrawing(){
+    currentWire = new Wire();
+    isDrawing = true;
+
+    qDebug() << isDrawing;
 }
 
-void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent* event) {
-    if (isDrawingWire && currentWire) {
-        QPointF endPoint = event->scenePos();
-        if (currentWire->pointCount() > 1) {
-            currentWire->updateLastPoint(endPoint);
-        } else {
-            currentWire->addNewPoint(endPoint);
+void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->buttons() & Qt::LeftButton){
+        if (isDrawing && currentWire) {
+            qDebug() << "Started Drawing";
+            QPointF currentPos = event->scenePos();
+            currentWire->updatePath(currentPos); // Add a method in your Wire class to update the path
+            update(); // Trigger a repaint
         }
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
-
-

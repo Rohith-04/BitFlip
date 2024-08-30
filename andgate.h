@@ -10,9 +10,12 @@ class Canvas;
 
 class AndGate : public Gate {
 public:
-    explicit AndGate(QGraphicsItem *parent = nullptr);
+    explicit AndGate(QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+
+private:
+    NewProject *m_project;
 };
 
 #endif // ANDGATE_H

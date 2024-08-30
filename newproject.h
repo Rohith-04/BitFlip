@@ -26,6 +26,7 @@ class NewProject : public QMainWindow
 public:
     explicit NewProject(QWidget *parent = nullptr);
     ~NewProject();
+    Canvas* getCanvas();
 
 private slots:
     void on_btn_andgate_clicked();

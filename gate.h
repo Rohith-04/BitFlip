@@ -7,8 +7,9 @@
 #include <QObject>
 
 class Gate : public Component {
+    Q_OBJECT
 public:
-    explicit Gate(QGraphicsItem *parent = nullptr);
+    explicit Gate(QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
     void initConnectionPoints() override; //Initialises Connection Points and will be calling this when the button is pressed in the newproject class
 
 protected:
@@ -43,9 +44,10 @@ protected:
     ConnectionPoint *input1;
     ConnectionPoint *input2;
     ConnectionPoint *outputPoint; //there is already a output member so a workaround
-
+//Passing this as atributes to use connect which needs the new project pointer
+    NewProject *m_project;
 //Wire related things
-    Canvas *m_canvas;
+
 };
 
 #endif // GATE_H

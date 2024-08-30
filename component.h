@@ -7,7 +7,7 @@
 
 class Canvas;
 
-class Component : public QGraphicsItem {
+class Component : public QGraphicsItem, public QObject { //need QObject for signals and slot mechanism
 public:
     explicit Component(QGraphicsItem *parent = nullptr);
     virtual QRectF boundingRect() const override = 0;
@@ -23,7 +23,8 @@ public:
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;  
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    Canvas *m_canvas;
 };
 
 #endif // COMPONENT_H

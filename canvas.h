@@ -24,7 +24,7 @@ public:
     void setView(QGraphicsView *view);
 
 public slots:
-    void handleConnectionPointClick(ConnectionPoint* point);
+    void startDrawing();
 
 private:
 
@@ -38,9 +38,10 @@ private:
     QList<OutputItem *> outputItems;
     QGraphicsView *view;
 
-    Wire* currentWire;
-    ConnectionPoint* startPoint;
-    bool isDrawingWire;
+    //////////////////////////////////////
+    Wire *currentWire;
+    bool isDrawing;
+
 };
 
 #endif // CANVAS_H

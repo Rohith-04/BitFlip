@@ -733,6 +733,7 @@ BitFlip_autogen/timestamp: \
 	/usr/share/cmake/Modules/CMakeGenericSystem.cmake \
 	/usr/share/cmake/Modules/CMakeInitializeConfigs.cmake \
 	/usr/share/cmake/Modules/CMakeLanguageInformation.cmake \
+	/usr/share/cmake/Modules/CMakeNinjaFindMake.cmake \
 	/usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake \
 	/usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake \
 	/usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake \

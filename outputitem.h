@@ -15,7 +15,7 @@ public:
         int id;
     };
 
-    OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr);
+    OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -33,6 +33,7 @@ private:
     bool m_active;
     int m_id; // Unique identifier for each output item
     static int count; // Static counter to generate unique IDs
+    NewProject *m_project;
 
     OutputItemData m_outputData; // Instance of the struct
 

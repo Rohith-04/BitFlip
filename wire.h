@@ -2,9 +2,12 @@
 #ifndef WIRE_H
 #define WIRE_H
 
+//#include "connectionpoint.h"
 #include "component.h"
 #include <QGraphicsPathItem>
 #include <QPainterPath>
+
+class ConnectionPoint;
 
 class Wire : public QGraphicsPathItem {
 public:
@@ -25,18 +28,11 @@ public:
     void setColor(const QColor &color);
     void setActive(bool active);
     void setState(bool state);
-    void setStartComponent(Component *component);
-    void setEndComponent(Component *component);
     QRectF boundingRect() const override;
-
     bool getState();
-
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    void updatePath(QPointF newPoint);
     WireData m_wireData; //Instance of the struct
-    //void logicHandling();
-    void updateLastPoint(const QPointF& point);
-    void addNewPoint(const QPointF& point);
-    int pointCount() const;
 
 private:
     QPainterPath path;
@@ -44,6 +40,7 @@ private:
     bool isActive;
     int m_id;
     static int count;
+    //////////////////////WIRE////////////////////////////////////////////
 };
 
 #endif // WIRE_H

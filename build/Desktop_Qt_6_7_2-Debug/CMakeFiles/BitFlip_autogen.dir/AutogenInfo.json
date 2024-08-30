@@ -11,6 +11,7 @@
 		"/usr/share/cmake/Modules/CMakeDetermineSystem.cmake",
 		"/usr/share/cmake/Modules/CMakeSystem.cmake.in",
 		"/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/3.30.2/CMakeSystem.cmake",
+		"/usr/share/cmake/Modules/CMakeNinjaFindMake.cmake",
 		"/usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake",
 		"/usr/share/cmake/Modules/Platform/Linux-Initialize.cmake",
 		"/usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake",

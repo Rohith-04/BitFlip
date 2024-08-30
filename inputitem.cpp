@@ -5,12 +5,13 @@
 
 int InputItem::count = 0;
 
-InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent)
-    : Component(parent), m_active(false), m_id(count++)
+InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent, NewProject *project)
+    : Component(parent), m_active(false), m_id(count++), m_project(project)
 {
     m_activePixmap = QPixmap(activeImagePath);
     m_inactivePixmap = QPixmap(inactiveImagePath);
     state = false;
+    qDebug() << "Input Item: "<< m_project;
 
     // Check if pixmaps are loaded
     if (m_activePixmap.isNull() || m_inactivePixmap.isNull()) {
@@ -89,7 +90,7 @@ bool InputItem::getState(){
 }
 
 void InputItem::initConnectionPoints(){
-    inputTerminal = new ConnectionPoint(this);
+    inputTerminal = new ConnectionPoint(this,m_project);
 
     updateConnectionPoints();
 }

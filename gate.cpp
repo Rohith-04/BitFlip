@@ -1,6 +1,6 @@
 #include "gate.h"
 
-Gate::Gate(QGraphicsItem *parent) : Component(parent) {
+Gate::Gate(QGraphicsItem *parent,NewProject *project) : Component(parent), m_project(project) {
     qDebug() << "Gate const is called";
     firstInput = false;
     secondInput = false;
@@ -8,27 +8,25 @@ Gate::Gate(QGraphicsItem *parent) : Component(parent) {
     input1 = nullptr;
     input2 = nullptr;
     outputPoint = nullptr;
+    qDebug() << "Gate: ---" << m_project;
 }
 
 void Gate::initConnectionPoints(){
-    input1 = new ConnectionPoint(this);
-    input2 = new ConnectionPoint(this);
-    outputPoint = new ConnectionPoint(this);
-
-    QObject::connect(input1, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
-    QObject::connect(input2, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
-    QObject::connect(outputPoint, &ConnectionPoint::connectionPointClicked, m_canvas, &Canvas::handleConnectionPointClick);
+    input1 = new ConnectionPoint(this,m_project);
+    input2 = new ConnectionPoint(this,m_project);
+    outputPoint = new ConnectionPoint(this,m_project);
     updateConnectionPoints();
 }
 
 void Gate::updateConnectionPoints(){
     QList<QPointF> connectionPoints = getConnectionPoints();
-    float r = input1->getRadius();
+    //float r = input1->getRadius();
 
-    input1->setPos(connectionPoints[0].x() - r, connectionPoints[0].y() - r);
-    input2->setPos(connectionPoints[1].x() - r, connectionPoints[1].y() - r);
-    outputPoint->setPos(connectionPoints[2].x() - r, connectionPoints[2].y() - r);
+    input1->setPos(connectionPoints[0].x(), connectionPoints[0].y());
+    input2->setPos(connectionPoints[1].x(), connectionPoints[1].y());
+    outputPoint->setPos(connectionPoints[2].x(), connectionPoints[2].y());
 }
+
 QRectF Gate::boundingRect() const{
     return QRectF(0 , 0 , m_pixmap.width(), m_pixmap.height());
 }
