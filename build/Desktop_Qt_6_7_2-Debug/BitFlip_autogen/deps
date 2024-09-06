@@ -5,8 +5,8 @@ BitFlip_autogen/timestamp: \
 	/home/tensa/Desktop/BitFlip/assets.qrc \
 	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/.qtc/package-manager/auto-setup.cmake \
 	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/BitFlip_autogen/moc_predefs.h \
-	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/3.30.2/CMakeCXXCompiler.cmake \
-	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/3.30.2/CMakeSystem.cmake \
+	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/3.30.3/CMakeCXXCompiler.cmake \
+	/home/tensa/Desktop/BitFlip/build/Desktop_Qt_6_7_2-Debug/CMakeFiles/3.30.3/CMakeSystem.cmake \
 	/home/tensa/Desktop/BitFlip/canvas.cpp \
 	/home/tensa/Desktop/BitFlip/canvas.h \
 	/home/tensa/Desktop/BitFlip/component.cpp \
@@ -733,7 +733,6 @@ BitFlip_autogen/timestamp: \
 	/usr/share/cmake/Modules/CMakeGenericSystem.cmake \
 	/usr/share/cmake/Modules/CMakeInitializeConfigs.cmake \
 	/usr/share/cmake/Modules/CMakeLanguageInformation.cmake \
-	/usr/share/cmake/Modules/CMakeNinjaFindMake.cmake \
 	/usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake \
 	/usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake \
 	/usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake \

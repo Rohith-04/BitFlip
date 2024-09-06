@@ -65,24 +65,32 @@ void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
     view->scale(scaleFactor, scaleFactor);
 
     // Reset the transformation anchor
-    //view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 }
 
 void Canvas::startDrawing(){
     currentWire = new Wire();
+    this->addItem(currentWire);
     isDrawing = true;
 
     qDebug() << isDrawing;
 }
 
 void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if(event->buttons() & Qt::LeftButton){
-        if (isDrawing && currentWire) {
-            qDebug() << "Started Drawing";
-            QPointF currentPos = event->scenePos();
-            currentWire->updatePath(currentPos); // Add a method in your Wire class to update the path
-            update(); // Trigger a repaint
-        }
+    if (isDrawing && currentWire) {
+        qDebug() << "Started Drawing";
+        QPointF currentPos = event->scenePos();
+        currentWire->updatePath(currentPos); // Add a method in your Wire class to update the path
+        update(); // Trigger a repaint
     }
     QGraphicsScene::mouseMoveEvent(event);
 }
+
+/*
+void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    if(isDrawing && currentWire){
+        currentWire = nullptr;
+        isDrawing = false;
+    }
+}
+*/

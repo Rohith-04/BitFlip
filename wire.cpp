@@ -11,7 +11,7 @@ std::vector<Wire *> Wire::listOfWires; //Declaring the static member
 Wire::Wire(QGraphicsItem *parent)
     : QGraphicsPathItem(parent), color(Qt::black), isActive(false)
 {
-    setFlag(QGraphicsItem::ItemIsMovable);
+    //setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsFocusable);
     m_wireData.startComponent = nullptr;
