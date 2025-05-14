@@ -95,8 +95,6 @@ Check out the [Contributing Guide](CONTRIBUTING.md) (coming soon!) for more deta
 
 Got questions, ideas, or just want to chat about BitFlip? Reach out to me:
 - **GitHub Issues**: [github.com/Rohith-04/BitFlip/issues](https://github.com/Rohith-04/BitFlip/issues)
-- **Email**: Drop me a line at [your.email@example.com] (update with your contact if desired)
-
 ---
 
 ## ❤️ Why This Matters
