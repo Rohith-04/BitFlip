@@ -2,46 +2,47 @@
 #define CANVAS_H
 
 #include <QGraphicsScene>
-#include <QGraphicsLineItem>
-#include <QGraphicsSceneMouseEvent>
+#include <QObject>
 #include <QGraphicsView>
-#include "inputitem.h"
-#include "outputitem.h"
-#include "wire.h"
-#include "connectionpoint.h"
 
 class Component;
-class InputItem;
-class OutputItem;
+class ConnectionPoint;
+class Wire;
 
 class Canvas : public QGraphicsScene {
     Q_OBJECT
+
 public:
     explicit Canvas(QObject *parent = nullptr);
+    ~Canvas() override;
+    
+    void addComponent(Component* component);
+    void removeComponent(Component* component);
+    
+    // Wire creation methods
+    void startWireCreation(ConnectionPoint* startPoint);
+    void completeWireCreation(ConnectionPoint* endPoint);
+    void cancelWireCreation();
+    
+    // Add setView method
+    void setView(QGraphicsView* view) { m_view = view; }
 
-    void addComponent(QGraphicsItem *comp);
-    void addComponent(QGraphicsLineItem *line);
-    void setView(QGraphicsView *view);
-
-public slots:
-    void startDrawing();
+protected:
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
-
-    void wheelEvent(QGraphicsSceneWheelEvent *event) override;
-    //void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    //void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
-
-    QList<InputItem *> inputItems;
-    QList<OutputItem *> outputItems;
-    QGraphicsView *view;
-
-    //////////////////////////////////////
-    Wire *currentWire;
-    bool isDrawing;
-
+    QList<Component*> m_components;
+    QList<Wire*> m_wires;
+    
+    // Wire creation state
+    bool m_creatingWire;
+    ConnectionPoint* m_wireStartPoint;
+    Wire* m_tempWire;
+    
+    // Store the view
+    QGraphicsView* m_view;
 };
 
 #endif // CANVAS_H

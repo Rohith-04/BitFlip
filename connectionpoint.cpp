@@ -1,65 +1,88 @@
+#include "canvas.h"
 #include "connectionpoint.h"
-#include "newproject.h"
+#include "component.h"
+#include "wire.h"
+#include <QGraphicsSceneMouseEvent>
+#include <QBrush>
+#include <QPen>
 
-ConnectionPoint::ConnectionPoint(QGraphicsItem *parent, NewProject *project) : QGraphicsEllipseItem(parent), m_project(project) {
-    radius = 10.00f;
-    setRect(0, 0, radius * 2, radius * 2);
-
-    pen.setStyle(Qt::SolidLine);
-    pen.setCapStyle(Qt::RoundCap);
-    pen.setJoinStyle(Qt::RoundJoin);
-    pen.setWidth(2);
-
-    defaultColor = QColor(50, 52, 56, 255);
-    hoverColor = QColor(103, 108, 115, 255);
-
-    pen.setColor(defaultColor);
-    setPen(pen);
-
-    QBrush brush(defaultColor);
-    setBrush(brush);
-
+ConnectionPoint::ConnectionPoint(Component* parent, Type type, int index)
+    : QGraphicsEllipseItem(-5, -5, 10, 10, parent),
+      m_parentComponent(parent),
+      m_type(type),
+      m_index(index),
+      m_value(false)
+{
+    // Set appearance
+    setBrush(QBrush(Qt::red));
+    setPen(QPen(Qt::black, 1));
     setAcceptHoverEvents(true);
-    qDebug() << "Connection Point is added";
-    QObject::connect(this,&ConnectionPoint::ConnectionPointClicked, [this](){
-        if(m_project == nullptr)
-            qDebug() << "The project pointer is null";
-        Canvas *canvas = m_project->getCanvas();
-        qDebug() << "connected";
-        if(canvas){
-            canvas->startDrawing();
+    setFlag(QGraphicsItem::ItemIsSelectable, true);
+    
+    // Input points are typically on the left, output on the right
+    if (type == Input) {
+        setBrush(QBrush(Qt::blue));
+    } else {
+        setBrush(QBrush(Qt::red));
+    }
+}
+
+ConnectionPoint::~ConnectionPoint()
+{
+    // Disconnect all wires
+    for (Wire* wire : m_connectedWires) {
+        wire->disconnect();
+    }
+}
+
+void ConnectionPoint::addWire(Wire* wire)
+{
+    if (!m_connectedWires.contains(wire)) {
+        m_connectedWires.append(wire);
+    }
+}
+
+void ConnectionPoint::removeWire(Wire* wire)
+{
+    m_connectedWires.removeAll(wire);
+}
+
+void ConnectionPoint::setValue(bool value)
+{
+    if (m_value != value) {
+        m_value = value;
+        
+        // Update visual appearance
+        setBrush(QBrush(m_value ? Qt::green : (m_type == Input ? Qt::blue : Qt::red)));
+        
+        // Propagate value change if this is an output
+        if (m_type == Output) {
+            emit valueChanged(m_value);
+            
+            // Update connected wires
+            for (Wire* wire : m_connectedWires) {
+                wire->propagateValue(m_value);
+            }
         }
-    });
-}
-
-float ConnectionPoint::getRadius(){
-    return radius;
-}
-
-void ConnectionPoint::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
-    pen.setColor(hoverColor);
-    setPen(pen);
-    QBrush brush(hoverColor);
-    setBrush(brush);
-    update();
-
-    QGraphicsEllipseItem::hoverEnterEvent(event);
-}
-
-void ConnectionPoint::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
-    pen.setColor(defaultColor);
-    setPen(pen);
-    QBrush brush(defaultColor);
-    setBrush(brush);
-    update();
-
-    QGraphicsEllipseItem::hoverLeaveEvent(event);
+    }
 }
 
 void ConnectionPoint::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    qDebug() << "ConnectionPoint is clicked";
-    emit ConnectionPointClicked();
+    if (event->button() == Qt::LeftButton) {
+        // Get the canvas
+        Canvas* canvas = dynamic_cast<Canvas*>(scene());
+        if (canvas) {
+            canvas->startWireCreation(this);
+            event->accept();
+            return;
+        }
+    }
     QGraphicsEllipseItem::mousePressEvent(event);
 }
 
+void ConnectionPoint::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    // Complete wire creation
+    QGraphicsEllipseItem::mouseReleaseEvent(event);
+}

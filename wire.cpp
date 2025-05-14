@@ -1,95 +1,131 @@
-// wire.cpp
 #include "wire.h"
-#include "canvas.h"
-#include <QPainter>
+#include "connectionpoint.h"
+#include "component.h"
+#include <QPainterPath>
 #include <QPen>
 
-int Wire::count = 0;
-std::vector<Wire *> Wire::listOfWires; //Declaring the static member
-
-
-Wire::Wire(QGraphicsItem *parent)
-    : QGraphicsPathItem(parent), color(Qt::black), isActive(false)
+Wire::Wire(ConnectionPoint* startPoint, ConnectionPoint* endPoint, QGraphicsItem* parent)
+    : QGraphicsPathItem(parent),
+      m_startPoint(nullptr),
+      m_endPoint(nullptr),
+      m_value(false)
 {
-    //setFlag(QGraphicsItem::ItemIsMovable);
-    setFlag(QGraphicsItem::ItemIsSelectable);
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    m_wireData.startComponent = nullptr;
-    m_wireData.endComponent = nullptr;
-    m_wireData.state = false;
-    count++;
-
-    listOfWires.push_back(this);
-}
-
-void Wire::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        qDebug() << "Removing Wire";
-        auto it = std::find(Wire::listOfWires.begin(), Wire::listOfWires.end(), this);
-
-        if (it != Wire::listOfWires.end()) {
-            Wire::listOfWires.erase(it);
-        }
-        if (scene()) {
-            scene()->removeItem(this);
-        }
-        delete this;
+    setPen(QPen(Qt::black, 2));
+    setZValue(-1); // Ensure wires are below components
+    
+    if (startPoint) {
+        setStartPoint(startPoint);
+    }
+    
+    if (endPoint) {
+        setEndPoint(endPoint);
     }
 }
 
-void Wire::addPoint(const QPointF &point) {
-    if (path.elementCount() == 0) {
-        path.moveTo(point);
-    } else {
-        QPointF lastPoint = path.currentPosition();
-        QPointF control1 = lastPoint + QPointF((point.x() - lastPoint.x()) / 2, 0);
-        QPointF control2 = point - QPointF((point.x() - lastPoint.x()) / 2, 0);
-        path.cubicTo(control1, control2, point);
+Wire::~Wire()
+{
+    disconnect();
+}
+
+void Wire::setStartPoint(ConnectionPoint* point)
+{
+    // Disconnect from old point if exists
+    if (m_startPoint) {
+        m_startPoint->removeWire(this);
+        // Use QObject::disconnect instead of just disconnect
+        QObject::disconnect(m_startPoint, &ConnectionPoint::valueChanged, this, &Wire::onStartPointValueChanged);
     }
-    setPath(path);
+
+    m_startPoint = point;
+
+    if (m_startPoint) {
+        m_startPoint->addWire(this);
+        connect(m_startPoint, &ConnectionPoint::valueChanged, this, &Wire::onStartPointValueChanged);
+
+        // Update wire value based on start point
+        if (m_startPoint->getType() == ConnectionPoint::Output) {
+            propagateValue(m_startPoint->getValue());
+        }
+    }
+
+    updatePath();
 }
 
-void Wire::setColor(const QColor &newColor)
+
+void Wire::setEndPoint(ConnectionPoint* point)
 {
-    color = newColor;
-    update();
+    // Disconnect from old point if exists
+    if (m_endPoint) {
+        m_endPoint->removeWire(this);
+    }
+    
+    m_endPoint = point;
+    
+    if (m_endPoint) {
+        m_endPoint->addWire(this);
+        
+        // Update end point value if wire already has a value
+        if (m_startPoint && m_startPoint->getType() == ConnectionPoint::Output) {
+            propagateValue(m_startPoint->getValue());
+        }
+    }
+    
+    updatePath();
 }
 
-void Wire::setActive(bool active)
+void Wire::updatePath()
 {
-    isActive = active;
-    update();
+    if (m_startPoint && m_endPoint) {
+        QPointF startPos = m_startPoint->scenePos();
+        QPointF endPos = m_endPoint->scenePos();
+        
+        QPainterPath path;
+        path.moveTo(startPos);
+        
+        // Create a nice curved path
+        qreal dx = endPos.x() - startPos.x();
+        path.cubicTo(
+            startPos.x() + dx * 0.5, startPos.y(),
+            endPos.x() - dx * 0.5, endPos.y(),
+            endPos.x(), endPos.y()
+        );
+        
+        setPath(path);
+    }
 }
 
-QRectF Wire::boundingRect() const{
-    return path.boundingRect();
-}
-
-void Wire::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void Wire::disconnect()
 {
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+    if (m_startPoint) {
+        m_startPoint->removeWire(this);
+        QObject::disconnect(m_startPoint, &ConnectionPoint::valueChanged, this, &Wire::onStartPointValueChanged);
+        m_startPoint = nullptr;
+    }
 
-    QPen pen(isActive ? color.lighter(150) : color);
-    pen.setWidth(10);
-    pen.setCapStyle(Qt::RoundCap);
-    pen.setJoinStyle(Qt::RoundJoin);
-    painter->setPen(pen);
-    painter->drawPath(path);
+    if (m_endPoint) {
+        m_endPoint->removeWire(this);
+        m_endPoint = nullptr;
+    }
+}
+void Wire::propagateValue(bool value)
+{
+    if (m_value != value) {
+        m_value = value;
+        updateAppearance();
+        
+        // Propagate to end point if it's an input
+        if (m_endPoint && m_endPoint->getType() == ConnectionPoint::Input) {
+            m_endPoint->setValue(value);
+        }
+    }
+}
+void Wire::onStartPointValueChanged(bool value)
+{
+    propagateValue(value);
 }
 
-void Wire::setState(bool state){
-    isActive = state;
-    update();
-}
-
-bool Wire::getState() {
-    return isActive;
-}
-
-void Wire::updatePath(QPointF newPoint){
-    //QPainterPath path = this->path();
-    qDebug() << "Adding new Path";
-    path.lineTo(newPoint);
-    setPath(path);
+void Wire::updateAppearance()
+{
+    // Change color based on signal value
+    setPen(QPen(m_value ? Qt::green : Qt::black, 2));
 }

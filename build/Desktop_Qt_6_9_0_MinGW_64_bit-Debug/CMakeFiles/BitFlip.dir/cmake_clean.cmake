@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "BitFlip.exe"
+  "BitFlip.exe.manifest"
+  "BitFlip.pdb"
+  "BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp"
+  "BitFlip_autogen/mocs_compilation.cpp"
+  "BitFlip_autogen/timestamp"
+  "BitFlip_autogen"
+  "CMakeFiles/BitFlip_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/BitFlip_autogen.dir/ParseCache.txt"
+  "CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.obj"
+  "CMakeFiles/BitFlip.dir/BitFlip_autogen/EWIEGA46WW/qrc_assets.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.obj"
+  "CMakeFiles/BitFlip.dir/BitFlip_autogen/mocs_compilation.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/andgate.cpp.obj"
+  "CMakeFiles/BitFlip.dir/andgate.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/canvas.cpp.obj"
+  "CMakeFiles/BitFlip.dir/canvas.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/component.cpp.obj"
+  "CMakeFiles/BitFlip.dir/component.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/connectionpoint.cpp.obj"
+  "CMakeFiles/BitFlip.dir/connectionpoint.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/gate.cpp.obj"
+  "CMakeFiles/BitFlip.dir/gate.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/inputitem.cpp.obj"
+  "CMakeFiles/BitFlip.dir/inputitem.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/main.cpp.obj"
+  "CMakeFiles/BitFlip.dir/main.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/mainwindow.cpp.obj"
+  "CMakeFiles/BitFlip.dir/mainwindow.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/newproject.cpp.obj"
+  "CMakeFiles/BitFlip.dir/newproject.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/outputitem.cpp.obj"
+  "CMakeFiles/BitFlip.dir/outputitem.cpp.obj.d"
+  "CMakeFiles/BitFlip.dir/wire.cpp.obj"
+  "CMakeFiles/BitFlip.dir/wire.cpp.obj.d"
+  "libBitFlip.dll.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/BitFlip.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

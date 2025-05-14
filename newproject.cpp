@@ -1,88 +1,77 @@
 #include "newproject.h"
-#include "ui_newproject.h"
+#include "andgate.h"
+#include "inputitem.h"
+#include "outputitem.h"
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QHBoxLayout>
 
-NewProject::NewProject(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::NewProject)
+NewProject::NewProject(QWidget *parent) : QWidget(parent)
 {
-    ui->setupUi(this);
-    showMaximized();
+    // Setup UI
+    setWindowTitle("Logic Gate Simulator");
+    resize(800, 600);
+    
+    // Create layout
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    
+    // Create canvas and view
     canvas = new Canvas(this);
-    canvas->setBackgroundBrush(QColor(255,255,255,255));
     view = new QGraphicsView(canvas, this);
     view->setRenderHint(QPainter::Antialiasing);
-    view->setRenderHint(QPainter::SmoothPixmapTransform);
     view->setDragMode(QGraphicsView::RubberBandDrag);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    
+    // Set the view in canvas
     canvas->setView(view);
-
-    btnAddInput = new QPushButton("Input", this);
-    btnAddAndGate = new QPushButton("AND", this);
-    btnAddOutput = new QPushButton("Output", this);
-
-    connect(btnAddAndGate, &QPushButton::clicked, this, &NewProject::on_btn_andgate_clicked);
-    connect(btnAddInput, &QPushButton::clicked, this, &NewProject::on_btn_addInput_clicked);
-    connect(btnAddOutput, &QPushButton::clicked, this, &NewProject::on_btn_addOutput_clicked);
-
-    // Create layouts
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    QHBoxLayout *buttonLayout = new QHBoxLayout;
-
-    // Add widgets to layouts
-    buttonLayout->addWidget(btnAddAndGate);
-    buttonLayout->addWidget(btnAddInput);
-    buttonLayout->addWidget(btnAddOutput);
-    mainLayout->addLayout(buttonLayout);
+    
+    // Add view to layout
     mainLayout->addWidget(view);
-
-    // Create a central widget and set layout
-    QWidget *centralWidget = new QWidget(this);
-    centralWidget->setLayout(mainLayout);
-    setCentralWidget(centralWidget);
+    
+    // Create toolbar with buttons
+    QHBoxLayout *toolbarLayout = new QHBoxLayout();
+    
+    QPushButton *btnAndGate = new QPushButton("Add AND Gate", this);
+    connect(btnAndGate, &QPushButton::clicked, this, &NewProject::on_btn_andgate_clicked);
+    
+    QPushButton *btnAddInput = new QPushButton("Add Input", this);
+    connect(btnAddInput, &QPushButton::clicked, this, &NewProject::on_btn_addInput_clicked);
+    
+    QPushButton *btnAddOutput = new QPushButton("Add Output", this);
+    connect(btnAddOutput, &QPushButton::clicked, this, &NewProject::on_btn_addOutput_clicked);
+    
+    toolbarLayout->addWidget(btnAndGate);
+    toolbarLayout->addWidget(btnAddInput);
+    toolbarLayout->addWidget(btnAddOutput);
+    toolbarLayout->addStretch();
+    
+    mainLayout->addLayout(toolbarLayout);
+    
+    // Set image paths for input components
+    activeImagePath = ":/images/assets/ip-active.png";  // Update with your actual path
+    inactiveImagePath = ":/images/assets/ip-not_active.png";  // Update with your actual path
 }
 
-void NewProject::closeEvent(QCloseEvent *event){
-    emit closed();
-    QWidget::closeEvent(event);
+NewProject::~NewProject()
+{
 }
 
-NewProject::~NewProject() {
-    delete ui;
-    qDebug() << "New Project Window is destroyed";
-}
-
-void NewProject::on_btn_andgate_clicked() {
-    qDebug() << "Adding AND Gate";
-    AndGate *andGate = new AndGate(nullptr,this);
-    andGate->setFlag(QGraphicsItem::ItemIsMovable);
-    andGate->setFlag(QGraphicsItem::ItemIsSelectable);
+void NewProject::on_btn_andgate_clicked()
+{
+    AndGate *andGate = new AndGate(nullptr, this);
+    andGate->setPos(200, 200);
     canvas->addComponent(andGate);
-    andGate->setPos(100, 100);
-    andGate->initConnectionPoints();
 }
 
-void NewProject::on_btn_addInput_clicked() {
-    qDebug() << "Adding Input Item";
-    QString activeImagePath = ":images/assets/ip-active.png";
-    QString inactiveImagePath = ":images/assets/ip-not_active.png";
-    InputItem *inputItem = new InputItem(activeImagePath, inactiveImagePath,nullptr,this);
-    inputItem->initConnectionPoints();
+void NewProject::on_btn_addInput_clicked()
+{
+    InputItem *inputItem = new InputItem(activeImagePath, inactiveImagePath, nullptr, this);
+    inputItem->setPos(100, 200);
     canvas->addComponent(inputItem);
 }
 
-void NewProject::on_btn_addOutput_clicked() {
-    qDebug() << "Adding output item";
-    QString activeOpImagePath = ":/images/assets/op-active.png";
-    QString inactiveOpImagePath = ":/images/assets/op-not_active.png";
-    OutputItem *outputItem = new OutputItem(activeOpImagePath, inactiveOpImagePath,nullptr,this);
-    outputItem->initConnectionPoints();
-    canvas->addComponent(outputItem);
-}
-
-Canvas* NewProject::getCanvas(){
-    if(!canvas){
-        qDebug() << "Canvas is not set";
-    }
-    return canvas;
+void NewProject::on_btn_addOutput_clicked()
+{
+    OutputItem *output = new OutputItem(nullptr, this);
+    output->setPos(300, 200);
+    canvas->addComponent(output);
 }

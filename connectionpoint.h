@@ -2,35 +2,46 @@
 #define CONNECTIONPOINT_H
 
 #include <QGraphicsEllipseItem>
-#include <QPen>
-#include "wire.h"
-//#include "canvas.h"
+#include <QObject>
 
-class NewProject; //Forward declaration of the new project class
+class Component;
+class Wire;
+class NewProject; // Forward declaration
 
-class ConnectionPoint :  public QObject , public QGraphicsEllipseItem
-{
+class ConnectionPoint : public QObject, public QGraphicsEllipseItem {
     Q_OBJECT
-public:
-    explicit ConnectionPoint(QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
+    Q_INTERFACES(QGraphicsItem)
 
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    float getRadius();
+public:
+    enum Type { Input, Output };
+
+    ConnectionPoint(Component* parent, Type type, int index = 0);
+    ~ConnectionPoint() override;
+
+    Type getType() const { return m_type; }
+    int getIndex() const { return m_index; }
+    Component* getParentComponent() const { return m_parentComponent; }
+    
+    void addWire(Wire* wire);
+    void removeWire(Wire* wire);
+    QList<Wire*> getConnectedWires() const { return m_connectedWires; }
+    
+    bool getValue() const { return m_value; }
+    void setValue(bool value);
 
 signals:
-    void ConnectionPointClicked();
+    void valueChanged(bool value);
 
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    
 private:
-    float radius;
-    QPen pen;
-    QColor defaultColor;
-    QColor hoverColor;
-
-/////////////////////////////////////
-    NewProject *m_project;
-
+    Component* m_parentComponent;
+    Type m_type;
+    int m_index;
+    bool m_value;
+    QList<Wire*> m_connectedWires;
 };
 
 #endif // CONNECTIONPOINT_H

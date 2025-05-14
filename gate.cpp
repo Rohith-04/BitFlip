@@ -12,9 +12,9 @@ Gate::Gate(QGraphicsItem *parent,NewProject *project) : Component(parent), m_pro
 }
 
 void Gate::initConnectionPoints(){
-    input1 = new ConnectionPoint(this,m_project);
-    input2 = new ConnectionPoint(this,m_project);
-    outputPoint = new ConnectionPoint(this,m_project);
+    input1 = new ConnectionPoint(this, ConnectionPoint::Type::Input, 0);
+    input2 = new ConnectionPoint(this, ConnectionPoint::Type::Input, 0);
+    outputPoint = new ConnectionPoint(this, ConnectionPoint::Type::Output, 0);
     updateConnectionPoints();
 }
 

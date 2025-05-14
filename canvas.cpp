@@ -1,96 +1,180 @@
 #include "canvas.h"
-#include <QScrollBar>
-#include <QDebug>
-#include <QLineF>
-#include <utility>
-#include <limits>
+#include "component.h"
+#include "connectionpoint.h"
+#include "wire.h"
+#include <QGraphicsSceneMouseEvent>
+#include <QKeyEvent>
 
-Canvas::Canvas(QObject *parent) : QGraphicsScene(parent), view(nullptr){
-    currentWire = nullptr;
-    isDrawing = false;
+Canvas::Canvas(QObject *parent)
+    : QGraphicsScene(parent),
+      m_creatingWire(false),
+      m_wireStartPoint(nullptr),
+      m_tempWire(nullptr),
+      m_view(nullptr)
+{
+    // Set a reasonable scene size
+    setSceneRect(0, 0, 800, 600);
+    
+    // Set a background color
+    setBackgroundBrush(QBrush(Qt::lightGray));
 }
 
-void Canvas::addComponent(QGraphicsItem *comp) {
-    if (!comp) {
-        qDebug() << "Cannot add null component!";
-        return;
+Canvas::~Canvas()
+{
+    // Clean up components and wires
+    for (auto* component : m_components) {
+        delete component;
     }
-    addItem(comp);
+    
+    for (auto* wire : m_wires) {
+        delete wire;
+    }
 }
 
-void Canvas::addComponent(QGraphicsLineItem *line) {
-    if (!line) {
-        qDebug() << "Cannot add null line!";
-        return;
+void Canvas::addComponent(Component* component)
+{
+    if (!m_components.contains(component)) {
+        m_components.append(component);
+        addItem(component);
     }
-    addItem(line);
 }
 
-void Canvas::setView(QGraphicsView *view) {
-    if (!view) {
-        qDebug() << "Cannot set null view!";
-        return;
+void Canvas::removeComponent(Component* component)
+{
+    if (m_components.contains(component)) {
+        m_components.removeAll(component);
+        removeItem(component);
+        delete component;
     }
-    this->view = view;
 }
 
-void Canvas::wheelEvent(QGraphicsSceneWheelEvent *event) {
-    if (!view) {
-        qDebug() << "View is not set!";
-        return;
+void Canvas::startWireCreation(ConnectionPoint* startPoint)
+{
+    if (!m_creatingWire && startPoint) {
+        m_creatingWire = true;
+        m_wireStartPoint = startPoint;
+        
+        // Create a temporary wire
+        m_tempWire = new Wire(nullptr, nullptr);
+        addItem(m_tempWire);
+        
+        // Set initial path
+        QPainterPath path;
+        path.moveTo(startPoint->scenePos());
+        path.lineTo(startPoint->scenePos());
+        m_tempWire->setPath(path);
     }
-
-    // Set the zoom factor
-    double scaleFactor = 1.15;
-    if (event->delta() < 0) {
-        scaleFactor = 1.0 / scaleFactor;
-    }
-
-    // Get the current mouse position in scene coordinates
-    //QPointF mouseScenePos = event->scenePos();
-
-    // Calculate the new scale
-    qreal currentScale = view->transform().m11(); // Get current horizontal scale
-    qreal newScale = currentScale * scaleFactor;
-
-    // Limit the scale to prevent extreme zooming
-    if (newScale < 0.4 || newScale > 2.0){
-        return;
-    }
-
-    // Set the transformation anchor to the cursor position
-    view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-
-    // Apply zoom
-    view->scale(scaleFactor, scaleFactor);
-
-    // Reset the transformation anchor
-    view->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
 }
 
-void Canvas::startDrawing(){
-    currentWire = new Wire();
-    this->addItem(currentWire);
-    isDrawing = true;
-
-    qDebug() << isDrawing;
+void Canvas::completeWireCreation(ConnectionPoint* endPoint)
+{
+    if (m_creatingWire && m_wireStartPoint && endPoint && m_tempWire) {
+        // Check if connection is valid (output to input)
+        bool validConnection = false;
+        
+        if (m_wireStartPoint->getType() == ConnectionPoint::Output && 
+            endPoint->getType() == ConnectionPoint::Input) {
+            validConnection = true;
+        } else if (m_wireStartPoint->getType() == ConnectionPoint::Input && 
+                  endPoint->getType() == ConnectionPoint::Output) {
+            // Swap start and end points
+            ConnectionPoint* temp = m_wireStartPoint;
+            m_wireStartPoint = endPoint;
+            endPoint = temp;
+            validConnection = true;
+        }
+        
+        if (validConnection) {
+            // Create a permanent wire
+            Wire* wire = new Wire(m_wireStartPoint, endPoint);
+            
+            // Add wire to the scene and lists
+            addItem(wire);
+            m_wires.append(wire);
+            
+            // Connect the wire to the connection points
+            m_wireStartPoint->addWire(wire);
+            endPoint->addWire(wire);
+            
+            // Initial propagation of value from start point
+            wire->propagateValue(m_wireStartPoint->getValue());
+        }
+        
+        // Clean up temporary wire
+        removeItem(m_tempWire);
+        delete m_tempWire;
+        m_tempWire = nullptr;
+        
+        m_creatingWire = false;
+        m_wireStartPoint = nullptr;
+    }
 }
 
-void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (isDrawing && currentWire) {
-        qDebug() << "Started Drawing";
-        QPointF currentPos = event->scenePos();
-        currentWire->updatePath(currentPos); // Add a method in your Wire class to update the path
-        update(); // Trigger a repaint
+void Canvas::cancelWireCreation()
+{
+    if (m_creatingWire) {
+        m_creatingWire = false;
+        m_wireStartPoint = nullptr;
+        
+        if (m_tempWire) {
+            removeItem(m_tempWire);
+            delete m_tempWire;
+            m_tempWire = nullptr;
+        }
     }
+}
+
+void Canvas::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    // Update temporary wire during creation
+    if (m_creatingWire && m_tempWire) {
+        QPointF endPos = event->scenePos();
+        
+        // Create a temporary path for the wire
+        QPainterPath path;
+        QPointF startPos = m_wireStartPoint->scenePos();
+        
+        path.moveTo(startPos);
+        
+        // Create a nice curved path
+        qreal dx = endPos.x() - startPos.x();
+        path.cubicTo(
+            startPos.x() + dx * 0.5, startPos.y(),
+            endPos.x() - dx * 0.5, endPos.y(),
+            endPos.x(), endPos.y()
+        );
+        
+        m_tempWire->setPath(path);
+    }
+    
     QGraphicsScene::mouseMoveEvent(event);
 }
 
-/*
-void Canvas::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    if(isDrawing && currentWire){
-        currentWire = nullptr;
-        isDrawing = false;
+void Canvas::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    // Check if we're creating a wire and released over a connection point
+    if (m_creatingWire) {
+        QGraphicsItem* item = itemAt(event->scenePos(), QTransform());
+        ConnectionPoint* connectionPoint = dynamic_cast<ConnectionPoint*>(item);
+        
+        if (connectionPoint && connectionPoint != m_wireStartPoint) {
+            completeWireCreation(connectionPoint);
+        } else {
+            // Released in empty space, cancel wire creation
+            cancelWireCreation();
+        }
+    }
+    
+    QGraphicsScene::mouseReleaseEvent(event);
+}
+
+void Canvas::keyPressEvent(QKeyEvent *event)
+{
+    // Cancel wire creation with Escape key
+    if (event->key() == Qt::Key_Escape && m_creatingWire) {
+        cancelWireCreation();
+        event->accept();
+    } else {
+        QGraphicsScene::keyPressEvent(event);
     }
 }
-*/

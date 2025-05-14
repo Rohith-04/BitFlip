@@ -1,50 +1,43 @@
 #ifndef INPUTITEM_H
 #define INPUTITEM_H
 
-#include "connectionpoint.h"
 #include "component.h"
+#include <QString>
 #include <QPixmap>
-#include <QVector2D>
-#include <QGraphicsSceneMouseEvent>
-//#include "connectionpoint.h"
+#include <QObject>
 
+class NewProject; // Forward declaration
 
 class InputItem : public Component {
+    Q_OBJECT
+
 public:
-    struct InputItemData {
-        QVector2D position;
-        int id;
-    };   
-    InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
+    InputItem(const QString& activeImagePath, const QString& inactiveImagePath, 
+              QGraphicsItem *parent = nullptr, QObject *parentObj = nullptr);
+    ~InputItem() override;
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    bool getState();
     QList<QPointF> getConnectionPoints() override;
-
-    void handleLogic() override {} //Input dont need to handle any logic it is implemented in mousePressEvent
-
-    //ConnectionPoints related functions
-    void initConnectionPoints()override;
+    
+    void handleLogic() override;
+    void initConnectionPoints() override;
     void updateConnectionPoints() override;
+    
+    bool getOutputValue(int index = 0) const override;
+    void setInputValue(int index, bool value) override;
+    
+    // Toggle the output value
+    void toggle();
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
-    QPixmap m_activePixmap;
-    QPixmap m_inactivePixmap;
-    bool m_active;
-    bool state;
-    int m_id; // Unique identifier for each input item
-    static int count; // Static counter to generate unique IDs
-    NewProject *m_project;
-
-    InputItemData m_inputData; // Store instance-specific data
-
-    ConnectionPoint *inputTerminal;
+    static const int SIZE = 40;
+    bool m_value;
+    QPixmap m_activeImage;
+    QPixmap m_inactiveImage;
 };
 
 #endif // INPUTITEM_H

@@ -2,45 +2,38 @@
 #ifndef WIRE_H
 #define WIRE_H
 
-//#include "connectionpoint.h"
-#include "component.h"
 #include <QGraphicsPathItem>
-#include <QPainterPath>
+#include <QObject>
 
 class ConnectionPoint;
 
-class Wire : public QGraphicsPathItem {
-public:
-    Wire(QGraphicsItem *parent = nullptr);
-    
-    struct WireData{
-        int id;
-        Component *startComponent;
-        Component *endComponent;
-        QPointF startPosition;
-        QPointF endPosition;
-        bool state;
-    };
-    static std::vector<Wire *> listOfWires;
+class Wire : public QObject, public QGraphicsPathItem {
+    Q_OBJECT
+    Q_INTERFACES(QGraphicsItem)
 
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
-    void addPoint(const QPointF &point);
-    void setColor(const QColor &color);
-    void setActive(bool active);
-    void setState(bool state);
-    QRectF boundingRect() const override;
-    bool getState();
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void updatePath(QPointF newPoint);
-    WireData m_wireData; //Instance of the struct
+public:
+    Wire(ConnectionPoint* startPoint = nullptr, ConnectionPoint* endPoint = nullptr, QGraphicsItem* parent = nullptr);
+    ~Wire() override;
+
+    void setStartPoint(ConnectionPoint* point);
+    void setEndPoint(ConnectionPoint* point);
+    
+    ConnectionPoint* getStartPoint() const { return m_startPoint; }
+    ConnectionPoint* getEndPoint() const { return m_endPoint; }
+    
+    void updatePath();
+    void disconnect();
+    void propagateValue(bool value);
+
+private slots:
+    void onStartPointValueChanged(bool value);
 
 private:
-    QPainterPath path;
-    QColor color;
-    bool isActive;
-    int m_id;
-    static int count;
-    //////////////////////WIRE////////////////////////////////////////////
+    ConnectionPoint* m_startPoint;
+    ConnectionPoint* m_endPoint;
+    bool m_value;
+    
+    void updateAppearance();
 };
 
 #endif // WIRE_H

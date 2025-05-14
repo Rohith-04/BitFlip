@@ -1,103 +1,113 @@
 #include "inputitem.h"
-#include "wire.h"
+#include "connectionpoint.h"
 #include <QPainter>
-#include <QDebug>
+#include <QGraphicsSceneMouseEvent>
 
-int InputItem::count = 0;
-
-InputItem::InputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent, NewProject *project)
-    : Component(parent), m_active(false), m_id(count++), m_project(project)
+InputItem::InputItem(const QString& activeImagePath, const QString& inactiveImagePath, 
+                     QGraphicsItem *parent, QObject *parentObj)
+    : Component(parent),
+      m_value(false)
 {
-    m_activePixmap = QPixmap(activeImagePath);
-    m_inactivePixmap = QPixmap(inactiveImagePath);
-    state = false;
-    qDebug() << "Input Item: "<< m_project;
-
-    // Check if pixmaps are loaded
-    if (m_activePixmap.isNull() || m_inactivePixmap.isNull()) {
-        qDebug() << "Failed to load input images:" << activeImagePath << inactiveImagePath;
+    // Set parent object if provided
+    if (parentObj) {
+        setParent(parentObj);
     }
-
-    m_inputData.position = QVector2D(pos().x(), pos().y());
-    m_inputData.id = m_id;
-
-    inputTerminal = nullptr;
+    
+    // Load images
+    m_activeImage.load(activeImagePath);
+    m_inactiveImage.load(inactiveImagePath);
+    
+    // Initialize connection points
+    initConnectionPoints();
 }
 
-QRectF InputItem::boundingRect() const {
-    return QRectF(0, 0, m_activePixmap.width(), m_activePixmap.height());
+InputItem::~InputItem()
+{
 }
 
-void InputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+QRectF InputItem::boundingRect() const
+{
+    return QRectF(0, 0, SIZE, SIZE);
+}
+
+void InputItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
     Q_UNUSED(option);
     Q_UNUSED(widget);
-
-    if (m_active) {
-        painter->drawPixmap(0, 0, m_activePixmap);
+    
+    // Draw the input component using the appropriate image
+    if (m_value) {
+        painter->drawPixmap(0, 0, SIZE, SIZE, m_activeImage);
     } else {
-        painter->drawPixmap(0, 0, m_inactivePixmap);
+        painter->drawPixmap(0, 0, SIZE, SIZE, m_inactiveImage);
     }
+    
+    // Draw output line
+    painter->setPen(QPen(Qt::black, 2));
+    painter->drawLine(SIZE, SIZE/2, SIZE+10, SIZE/2);
 }
 
-void InputItem::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->button() == Qt::LeftButton) {
-        m_active = !m_active;
-        update(); // Redraws the item
-        state = !state;
-
-        //Update the wire it is connected to
-        for (Wire *wire : Wire::listOfWires) {
-            if (wire->m_wireData.startComponent == this) {
-                wire->setState(m_active);
-                wire->m_wireData.state = m_active; //update it also in its corresponding struct so that it can be accessed later in the logic evaluation
-            }
-        }
-    }
-    Component::mousePressEvent(event);
-}
-
-void InputItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-    if (event->buttons() & Qt::LeftButton) {
-        // Handle movement
-        Component::mouseMoveEvent(event);
-
-        // Update the position of the wire points
-        m_inputData.position = QVector2D(pos().x(), pos().y());
-    }
-}
-
-void InputItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-    // Handle mouse release if needed
-    Component::mouseReleaseEvent(event);
-}
-
-QList<QPointF> InputItem::getConnectionPoints() {
+QList<QPointF> InputItem::getConnectionPoints()
+{
     QList<QPointF> points;
-    QRectF bounds = boundingRect();
-
-    QPointF t_point(bounds.right() - 1.5, bounds.top() + bounds.height() * 0.5);
-    points << t_point;
-
-    for (const auto &point : points) {
-        qDebug() << "Wire point:" << point;
-    }
-
+    points << QPointF(SIZE+10, SIZE/2); // Output
     return points;
 }
 
-bool InputItem::getState(){
-    return state;
+void InputItem::handleLogic()
+{
+    // Nothing to do here, value is set by user
 }
 
-void InputItem::initConnectionPoints(){
-    inputTerminal = new ConnectionPoint(this,m_project);
-
-    updateConnectionPoints();
+void InputItem::initConnectionPoints()
+{
+    // Create output connection point
+    auto* output = new ConnectionPoint(this, ConnectionPoint::Output, 0);
+    output->setPos(SIZE+10, SIZE/2);
+    m_connectionPoints.append(output);
+    output->setValue(m_value);
 }
 
-void InputItem::updateConnectionPoints(){
-    QList<QPointF> connectionPoints = getConnectionPoints();
-    float r = inputTerminal->getRadius();
+void InputItem::updateConnectionPoints()
+{
+    // Update connection point positions if the component moves
+    if (!m_connectionPoints.isEmpty()) {
+        m_connectionPoints[0]->setPos(SIZE+10, SIZE/2);
+    }
+}
 
-    inputTerminal->setPos(connectionPoints[0].x() - r, connectionPoints[0].y() - r);
+bool InputItem::getOutputValue(int index) const
+{
+    Q_UNUSED(index); // We only have one output
+    return m_value;
+}
+
+void InputItem::setInputValue(int index, bool value)
+{
+    Q_UNUSED(index);
+    Q_UNUSED(value);
+    // This is an input component, so it doesn't receive input from other components
+}
+
+void InputItem::toggle()
+{
+    m_value = !m_value;
+    
+    // Update the output connection point
+    if (!m_connectionPoints.isEmpty()) {
+        m_connectionPoints[0]->setValue(m_value);
+    }
+    
+    // Trigger a redraw
+    update();
+}
+
+void InputItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        toggle();
+        event->accept();
+    } else {
+        Component::mouseDoubleClickEvent(event);
+    }
 }

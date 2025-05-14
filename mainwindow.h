@@ -2,16 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QLabel>
-#include <QMovie>
-#include "newproject.h"
+#include <QGraphicsView>
+#include <QToolBar>
+#include <QAction>
 
-//Forward declaration of New Project
-class NewProject;
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+class Canvas;
 
 class MainWindow : public QMainWindow
 {
@@ -20,17 +15,28 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    bool eventFilter(QObject *obj, QEvent *event) override;
-    NewProject *ptr_newProject;
 
 private slots:
-
-    void on_btn_newProject_clicked();
+    void addAndGate();
+    void addInputComponent();
+    void addOutputComponent();
+    void clearCanvas();
 
 private:
-    Ui::MainWindow *ui;
-    QLabel *imageLabel;
-    QPixmap staticImage;
-    QMovie *gifMovie;
+    void createActions();
+    void createToolBar();
+
+    Canvas *m_canvas;
+    QGraphicsView *m_view;
+    QToolBar *m_toolBar;
+    
+    QAction *m_addAndGateAction;
+    QAction *m_addInputAction;
+    QAction *m_addOutputAction;
+    QAction *m_clearAction;
+
+    QString activeImagePath;
+    QString inactiveImagePath;
 };
+
 #endif // MAINWINDOW_H

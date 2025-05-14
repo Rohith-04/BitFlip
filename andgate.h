@@ -2,20 +2,37 @@
 #define ANDGATE_H
 
 #include "component.h"
-#include "gate.h"
-#include <QPixmap>
-#include <QVector2D>
+#include <QGraphicsTextItem>
+#include <QObject>
 
-class Canvas;
+class NewProject; // Forward declaration
 
-class AndGate : public Gate {
+class AndGate : public Component {
+    Q_OBJECT
+
 public:
-    explicit AndGate(QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
+    explicit AndGate(QGraphicsItem *parent = nullptr, QObject *parentObj = nullptr);
+    ~AndGate() override;
 
+    QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QList<QPointF> getConnectionPoints() override;
+    
+    void handleLogic() override;
+    void initConnectionPoints() override;
+    void updateConnectionPoints() override;
+    
+    bool getOutputValue(int index = 0) const override;
+    void setInputValue(int index, bool value) override;
 
 private:
-    NewProject *m_project;
+    static const int WIDTH = 60;
+    static const int HEIGHT = 60;
+    
+    bool m_input1;
+    bool m_input2;
+    bool m_output;
+    QGraphicsTextItem* m_label;
 };
 
 #endif // ANDGATE_H

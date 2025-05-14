@@ -1,43 +1,37 @@
 #ifndef OUTPUTITEM_H
 #define OUTPUTITEM_H
 
-#include "connectionpoint.h"
 #include "component.h"
+#include <QGraphicsTextItem>
 #include <QPixmap>
-#include <QVector2D>
-#include <QGraphicsSceneMouseEvent>
 
-class OutputItem : public Component
-{
+class OutputItem : public Component {
+    Q_OBJECT
+
 public:
-    struct OutputItemData {
-        QVector2D position;
-        int id;
-    };
-
-    OutputItem(const QString &activeImagePath, const QString &inactiveImagePath, QGraphicsItem *parent = nullptr, NewProject *project = nullptr);
+    explicit OutputItem(QGraphicsItem *parent = nullptr, QObject *parentObj = nullptr);
+    ~OutputItem() override;
 
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
-    void toggleState();
     QList<QPointF> getConnectionPoints() override;
-
+    
     void handleLogic() override;
-
     void initConnectionPoints() override;
     void updateConnectionPoints() override;
+    
+    bool getOutputValue(int index = 0) const;
+    void setInputValue(int index, bool value);
+    float getRadius() const { return m_radius; }
 
 private:
+    bool m_value;
+    bool m_active;
     QPixmap m_activePixmap;
     QPixmap m_inactivePixmap;
-    bool m_active;
-    int m_id; // Unique identifier for each output item
-    static int count; // Static counter to generate unique IDs
-    NewProject *m_project;
-
-    OutputItemData m_outputData; // Instance of the struct
-
-    ConnectionPoint *outputTerminal;
+    QGraphicsTextItem* m_label;
+    ConnectionPoint* inputTerminal;
+    float m_radius;
 };
 
 #endif // OUTPUTITEM_H
