@@ -1,8 +1,7 @@
-# BitFlip
+# BitFlip 🔀
 
 **Welcome to BitFlip!** 🎉 A vibrant, user-friendly logic gate simulator crafted with **C++** and **Qt**, designed to bring digital circuits to life. Whether you're a student exploring logic gates or a hobbyist building complex circuits, BitFlip makes designing and simulating circuits a breeze with its intuitive drag-and-drop interface. This project is deeply personal to me—a true passion project close to my heart—and I’m excited to share it with the world!
 
-<<<<<<< HEAD
 > 🚧 **Note**: BitFlip is in its early development phase, and I’m pouring my energy into making it amazing. Join me on this journey!
 
 ---
@@ -10,15 +9,11 @@
 ## 🌟 Why BitFlip?
 
 BitFlip is all about making digital logic fun, accessible, and visually engaging. Imagine dragging and dropping logic gates, connecting them with a few clicks, and watching your circuit come alive in real-time. That’s the magic of BitFlip! Built with love, it’s a tool for learning, experimenting, and unleashing your creativity in the world of digital design.
-=======
-> This project is in its **initial development stage**.
->>>>>>> 4e099da29827ba428ce3ad547524742a0ec20c76
 
 ---
 
-## 🧠Features
+## 🧠 Features
 
-<<<<<<< HEAD
 Here’s what BitFlip offers right now, with more to come:
 
 - 🖱️ **Drag-and-Drop Simplicity**: Easily add and arrange logic gates with an intuitive interface.
@@ -29,16 +24,6 @@ Here’s what BitFlip offers right now, with more to come:
 ---
 
 ## 🚀 Roadmap
-=======
-- 🖱Drag-and-drop interface for adding logic gates
--  Real-time logic simulation with gate interconnection
-- 🔌Support for basic gates: AND, OR, NOT, XOR, NAND, NOR
-- 🪟Cross-platform GUI built using Qt
-
----
-
-## Roadmap
->>>>>>> 4e099da29827ba428ce3ad547524742a0ec20c76
 
 BitFlip is just getting started, and I’m dreaming big! Here are some exciting features planned for the future:
 
@@ -52,13 +37,9 @@ Have an idea? Let’s make it happen together!
 
 ---
 
-<<<<<<< HEAD
 ## 🛠️ Getting Started
 
 Ready to dive into BitFlip? Follow these simple steps to build and run it on your machine.
-=======
-## Getting Started
->>>>>>> 4e099da29827ba428ce3ad547524742a0ec20c76
 
 ### Prerequisites
 
