@@ -2,20 +2,20 @@
 
 **BitFlip** is a lightweight, intuitive logic gate simulator built using **C++** and **Qt**. It allows users to visually design and simulate digital circuits using basic logic gates.
 
-> 🚧 This project is in its **initial development stage**.
+> This project is in its **initial development stage**.
 
 ---
 
-## 🧠 Features
+## 🧠Features
 
-- 🖱️ Drag-and-drop interface for adding logic gates
--   Real-time logic simulation with gate interconnection
-- 🔌 Support for basic gates: AND, OR, NOT, XOR, NAND, NOR
-- 🪟 Cross-platform GUI built using Qt
+- 🖱Drag-and-drop interface for adding logic gates
+-  Real-time logic simulation with gate interconnection
+- 🔌Support for basic gates: AND, OR, NOT, XOR, NAND, NOR
+- 🪟Cross-platform GUI built using Qt
 
 ---
 
-## 📌 Roadmap
+## Roadmap
 
 Here are some of the exciting features planned for future development:
 
@@ -27,7 +27,7 @@ Here are some of the exciting features planned for future development:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
