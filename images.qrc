@@ -1,9 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>and_gate.png</file>
-    </qresource>
-    <qresource prefix="/">
-        <file>ip-active.png</file>
-        <file>ip-not_active.png</file>
-    </qresource>
-</RCC>
