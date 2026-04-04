@@ -59,6 +59,8 @@ CMakeLists.txt.user*
 *.opensdf
 *.vcxproj
 *vcxproj.*
+/.qtcreator
+/.vscode
 
 # MinGW generated files
 *.Debug
@@ -71,4 +73,8 @@ CMakeLists.txt.user*
 # --------
 *.dll
 *.exe
+
+#Build artifacts
+/build
+
 
