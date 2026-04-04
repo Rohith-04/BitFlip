@@ -1,4 +1,0 @@
-/home/rohith/BitFlip/build/CMakeFiles/BitFlip_Engine.dir
-/home/rohith/BitFlip/build/CMakeFiles/BitFlip_Tests.dir
-/home/rohith/BitFlip/build/CMakeFiles/edit_cache.dir
-/home/rohith/BitFlip/build/CMakeFiles/rebuild_cache.dir

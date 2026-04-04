@@ -1,2 +1,0 @@
-/usr/bin/ar qc libBitFlip_Engine.a CMakeFiles/BitFlip_Engine.dir/src/Core/Wire.cpp.o CMakeFiles/BitFlip_Engine.dir/src/Core/Gate.cpp.o CMakeFiles/BitFlip_Engine.dir/src/Circuit/Circuit.cpp.o CMakeFiles/BitFlip_Engine.dir/src/Simulation/Propagator.cpp.o
-/usr/bin/ranlib libBitFlip_Engine.a

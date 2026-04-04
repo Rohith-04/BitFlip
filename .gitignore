@@ -26,6 +26,7 @@ compile_commands.json
 # Editor junk
 # =========================
 .vscode/
+.qtcreator/
 .idea/
 *.swp
 *~
